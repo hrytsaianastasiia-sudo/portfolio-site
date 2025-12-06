@@ -255,17 +255,9 @@ const INTERESTS = [
 const PROJECTS: Project[] = [
  {
    id: "vegwam",
-   // ---------------------------------------------------------
-   // CHANGE: Updated thumbnail to match brand colors from PDF
-   // Replace this URL with your local file path if you have the image, e.g., "/vegwam-cover.png"
-   // ---------------------------------------------------------
-   thumbnail: "https://placehold.co/1200x800/145850/e6eddd?text=VegWam",
+   thumbnail: "/vegwam-thumbnail.png",
    accentColor: "bg-[#F1683C]",
    designSystem: {
-     // ---------------------------------------------------------
-     // CHANGE: Updated colors to match PDF specifications
-     // Green: #145850, Orange: #F1683C, Cream: #E6EDDD
-     // ---------------------------------------------------------
      colors: [
        { hex: "#145850", name: "VegWam Green" },
        { hex: "#F1683C", name: "VegWam Orange" },
