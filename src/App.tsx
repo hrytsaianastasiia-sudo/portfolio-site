@@ -257,6 +257,7 @@ const PROJECTS: Project[] = [
    id: "vegwam",
    thumbnail: "/vegwam-thumbnail.png",
    accentColor: "bg-[#F1683C]",
+   figmaUrl: "https://www.figma.com/proto/EZdHxq5rKrYkzWlTOWp70g/VegWam?page-id=164%3A15&node-id=164-990&p=f&viewport=1564%2C770%2C0.19&t=rGunCvN7EX5X2loa-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=164%3A84",
    designSystem: {
      colors: [
        { hex: "#145850", name: "VegWam Green" },
@@ -657,6 +658,24 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
        </section>
 
 
+       {/* NEW: Prototype Section */}
+       <section>
+         <VegSectionHeader overline="PROTOTYPE" title={lang === 'jp' ? "プロトタイプ" : "Interactive Prototype"} />
+         <div className="w-full h-[600px] md:h-[800px] bg-gray-100 rounded-2xl overflow-hidden border border-[#dddddd] shadow-inner">
+           <iframe
+             style={{ border: 'none' }}
+             width="100%"
+             height="100%"
+             src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent("https://www.figma.com/proto/EZdHxq5rKrYkzWlTOWp70g/VegWam?page-id=164%3A15&node-id=164-990&p=f&viewport=1564%2C770%2C0.19&t=rGunCvN7EX5X2loa-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=164%3A84")}`}
+             allowFullScreen
+           ></iframe>
+         </div>
+         <p className="text-sm text-[#555555] text-center mt-4">
+           {lang === 'jp' ? "※画面を操作して、実際のフローを体験できます。" : "*Interact with the prototype above to explore the user flow."}
+         </p>
+       </section>
+
+
        {/* 5. UI Highlights */}
        <section>
          <VegSectionHeader overline="UI HIGHLIGHTS" title={t.ui.title[lang]} />
@@ -951,11 +970,7 @@ export default function App() {
 
  return (
    <div className="min-h-screen bg-[#FAFAFA] font-sans text-gray-900 selection:bg-[#145850] selection:text-white">
-     <div>
-    
-      {/* your existing content continues below */}
-      
-    </div>
+     
      {/* --- Floating Nav (Trend: Island UI) --- */}
      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-40 bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg shadow-gray-200/50 rounded-full px-6 py-3 flex items-center gap-6 md:gap-8 max-w-sm md:max-w-lg w-full justify-between">
        <div className="w-8 h-8 bg-[#145850] text-white rounded-full flex items-center justify-center font-serif font-bold text-lg">A</div>
