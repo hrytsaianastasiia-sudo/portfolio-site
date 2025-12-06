@@ -254,70 +254,6 @@ const INTERESTS = [
 
 const PROJECTS: Project[] = [
  {
-   id: "navitime",
-   thumbnail: "https://placehold.co/1200x800/1e3a8a/ffffff?text=NAVITIME+Redesign",
-   accentColor: "bg-[#007AFF]",
-   figmaUrl: "https://www.figma.com/proto/hzx81CrdGeHadYO9whxsqw/%E8%87%AA%E8%BB%A2%E8%BB%8ANAVIGATION-FINAL?page-id=0%3A1&node-id=3-31&p=f&viewport=401%2C481%2C0.22&t=NsaxSieERH8gXG8d-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=3%3A31",
-   designSystem: {
-     colors: [
-       { hex: "#007AFF", name: "Navi Blue" },
-       { hex: "#E0F7FA", name: "Ice Blue" },
-       { hex: "#FFFFFF", name: "White" }     
-     ],
-     typography: [{ name: "Roboto", usage: "Numeric Data" }, { name: "Noto Sans JP", usage: "UI Text" }]
-   },
-   content: {
-     en: {
-       title: "Bicycle NAVITIME",
-       category: "App Redesign",
-       description: "Redesigning navigation for safety and clarity.",
-       tags: ["UX Research", "Redesign", "Mobile"],
-       caseStudy: {
-         role: "UI/UX Designer",
-         timeline: "2 Weeks",
-         tools: ["Figma", "Illustrator"],
-         overview: "A comprehensive redesign of a popular cycling navigation app to improve safety and usability.",
-         problem: "Low contrast and small touch targets made the app dangerous to use while riding.",
-         solution: "Implemented a high-contrast 'Safety UI' with enlarged interactive zones and prioritized data display.",
-         process: ["Heuristic Analysis", "Wireframing", "Prototyping"],
-         results: "Improved readability by 40% and simplified the core navigation flow."
-       }
-     },
-     jp: {
-       title: "自転車NAVITIME",
-       category: "アプリリデザイン",
-       description: "安全性と明瞭さを追求したナビゲーションの再設計。",
-       tags: ["UXリサーチ", "リデザイン", "モバイル"],
-       caseStudy: {
-         role: "UI/UXデザイナー",
-         timeline: "2週間",
-         tools: ["Figma", "Illustrator"],
-         overview: "サイクリング中の視認性と安全性を向上させるための、人気ナビアプリの全面リデザイン。",
-         problem: "既存アプリはコントラストが低く、ボタンが小さいため、走行中の操作が危険でした。",
-         solution: "高コントラストな「セーフティUI」を採用し、タップ領域を拡大。重要な情報を瞬時に認識できるようにしました。",
-         process: ["ヒューリスティック分析", "ワイヤーフレーム", "プロトタイプ"],
-         results: "視認性を40%向上させ、主要なナビゲーションフローを簡素化しました。"
-       }
-     },
-     ua: {
-       title: "Bicycle NAVITIME",
-       category: "Редизайн Застосунку",
-       description: "Редизайн навігації для безпеки та чіткості.",
-       tags: ["UX Дослідження", "Редизайн", "Мобільний"],
-       caseStudy: {
-         role: "UI/UX Дизайнер",
-         timeline: "2 Тижні",
-         tools: ["Figma", "Illustrator"],
-         overview: "Комплексний редизайн популярного велонавігатора для підвищення безпеки.",
-         problem: "Низький контраст і малі кнопки робили додаток небезпечним під час їзди.",
-         solution: "Впроваджено висококонтрастний 'Safety UI' зі збільшеними зонами натискання.",
-         process: ["Евристичний аналіз", "Вайрфрейми", "Прототипування"],
-         results: "Покращено читабельність на 40% та спрощено основний сценарій навігації."
-       }
-     }
-   }
- },
- {
    id: "vegwam",
    // ---------------------------------------------------------
    // CHANGE: Updated thumbnail to match brand colors from PDF
@@ -384,6 +320,70 @@ const PROJECTS: Project[] = [
          solution: "Створено додаток для пошуку на карті з вбудованим словником інгредієнтів.",
          process: ["Персона", "Логотип", "UI Дизайн"],
          results: "Створено дружній бренд та безшовний шлях користувача."
+       }
+     }
+   }
+ },
+ {
+   id: "navitime",
+   thumbnail: "https://placehold.co/1200x800/1e3a8a/ffffff?text=NAVITIME+Redesign",
+   accentColor: "bg-[#007AFF]",
+   figmaUrl: "https://www.figma.com/proto/hzx81CrdGeHadYO9whxsqw/%E8%87%AA%E8%BB%A2%E8%BB%8ANAVIGATION-FINAL?page-id=0%3A1&node-id=3-31&p=f&viewport=401%2C481%2C0.22&t=NsaxSieERH8gXG8d-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=3%3A31",
+   designSystem: {
+     colors: [
+       { hex: "#007AFF", name: "Navi Blue" },
+       { hex: "#E0F7FA", name: "Ice Blue" },
+       { hex: "#FFFFFF", name: "White" }     
+     ],
+     typography: [{ name: "Roboto", usage: "Numeric Data" }, { name: "Noto Sans JP", usage: "UI Text" }]
+   },
+   content: {
+     en: {
+       title: "Bicycle NAVITIME",
+       category: "App Redesign",
+       description: "Redesigning navigation for safety and clarity.",
+       tags: ["UX Research", "Redesign", "Mobile"],
+       caseStudy: {
+         role: "UI/UX Designer",
+         timeline: "2 Weeks",
+         tools: ["Figma", "Illustrator"],
+         overview: "A comprehensive redesign of a popular cycling navigation app to improve safety and usability.",
+         problem: "Low contrast and small touch targets made the app dangerous to use while riding.",
+         solution: "Implemented a high-contrast 'Safety UI' with enlarged interactive zones and prioritized data display.",
+         process: ["Heuristic Analysis", "Wireframing", "Prototyping"],
+         results: "Improved readability by 40% and simplified the core navigation flow."
+       }
+     },
+     jp: {
+       title: "自転車NAVITIME",
+       category: "アプリリデザイン",
+       description: "安全性と明瞭さを追求したナビゲーションの再設計。",
+       tags: ["UXリサーチ", "リデザイン", "モバイル"],
+       caseStudy: {
+         role: "UI/UXデザイナー",
+         timeline: "2週間",
+         tools: ["Figma", "Illustrator"],
+         overview: "サイクリング中の視認性と安全性を向上させるための、人気ナビアプリの全面リデザイン。",
+         problem: "既存アプリはコントラストが低く、ボタンが小さいため、走行中の操作が危険でした。",
+         solution: "高コントラストな「セーフティUI」を採用し、タップ領域を拡大。重要な情報を瞬時に認識できるようにしました。",
+         process: ["ヒューリスティック分析", "ワイヤーフレーム", "プロトタイプ"],
+         results: "視認性を40%向上させ、主要なナビゲーションフローを簡素化しました。"
+       }
+     },
+     ua: {
+       title: "Bicycle NAVITIME",
+       category: "Редизайн Застосунку",
+       description: "Редизайн навігації для безпеки та чіткості.",
+       tags: ["UX Дослідження", "Редизайн", "Мобільний"],
+       caseStudy: {
+         role: "UI/UX Дизайнер",
+         timeline: "2 Тижні",
+         tools: ["Figma", "Illustrator"],
+         overview: "Комплексний редизайн популярного велонавігатора для підвищення безпеки.",
+         problem: "Низький контраст і малі кнопки робили додаток небезпечним під час їзди.",
+         solution: "Впроваджено висококонтрастний 'Safety UI' зі збільшеними зонами натискання.",
+         process: ["Евристичний аналіз", "Вайрфрейми", "Прототипування"],
+         results: "Покращено читабельність на 40% та спрощено основний сценарій навігації."
        }
      }
    }
@@ -1036,7 +1036,7 @@ export default function App() {
                <div className="absolute inset-0 bg-[#F1683C] rounded-full opacity-20 blur-3xl animate-pulse"></div>
                <div className="relative w-full h-full rounded-full border-[6px] border-white shadow-2xl overflow-hidden bg-gray-100">
                   <img
-                     src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=988&q=80"
+                     src="/profile.jpg"
                      alt="Anastasiia Profile"
                      className="w-full h-full object-cover"
                   />
