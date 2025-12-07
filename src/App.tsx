@@ -85,7 +85,7 @@ const LABELS = {
    titleSuffix: { en: "Well-being.", jp: "Well-being.", ua: "Благополуччя." },
    intro: {
      en: "Hi, I'm Anastasiia. A Tokyo-based Product Designer blending data-driven UX with organic, inclusive aesthetics.",
-     jp: "こんにちは、アナスタシアです。東京を拠点に、データに基づくUXとオーガニックで包括的なデザインを融合させるプロダクトデザイナーです。",
+     jp: "東京拠点のプロダクトデザイナー、アナスタシアです。データに基づくUXと、人に寄り添うインクルーシブなデザインでプロダクトをつくっています。",
      ua: "Привіт, я Анастасія. Продуктовий дизайнер у Токіо, що поєднує UX на основі даних з органічною естетикою."
    },
    cta: { en: "View Projects", jp: "プロジェクトを見る", ua: "Переглянути Проєкти" },
@@ -271,7 +271,7 @@ const VEGWAM_DATA = {
   core_insight: {
     en: "Vegan services must design the entire experience to include not just the 'individual', but also the people supporting them.",
     jp: "ヴィーガン向けサービスは、「本人」だけでなく、周りで支える人も含めた体験全体をデザインする必要がある。",
-    ua: "Веганські сервіси мають проектувати досвід не лише для «особи», а й для людей, що її підтримують."
+    ua: "Веганські сервіси мають проектувати досвід не лише для「особи」, а й для людей, що її підтримують."
   }
  },
  persona_new: {
@@ -287,7 +287,7 @@ const VEGWAM_DATA = {
      tag: { en: "Wants to continue naturally", jp: "日常の中で続けたい", ua: "Хоче продовжувати природно" },
      name: { en: "Ken Sato (32)", jp: "佐藤 健 (32)", ua: "Кен Сато (32)" },
      role: { en: "Office Worker / Tokyo", jp: "会社員 / 都内", ua: "Офісний працівник / Токіо" },
-     desc: { en: "Vegan for 3 years. Busy with work on weekdays, enjoys cafe hopping on weekends. Wants to be 'natural', not 'high maintenance'.", jp: "ヴィーガン歴3年。パートナーの影響で開始。平日は仕事が忙しく外食中心だが、週末はカフェ巡りを楽しむ。「意識高い系」ではなく「自然体」でいたい。", ua: "Веган 3 роки. Зайнятий роботою, любить кафе на вихідних. Хоче бути «природним»." },
+     desc: { en: "Vegan for 3 years. Busy with work on weekdays, enjoys cafe hopping on weekends. Wants to be 'natural', not 'high maintenance'.", jp: "ヴィーガン歴3年。パートナーの影響で開始。平日は仕事が忙しく外食中心だが、週末はカフェ巡りを楽しむ。「意識高い系」ではなく「自然体」でいたい。", ua: "Веган 3 роки. Зайнятий роботою, любить кафе на вихідних. Хоче бути「природним」." },
      pains: { en: ["Checking restaurants by phone is tedious", "Lack of trusted info"], jp: ["入店前の電話確認が面倒", "信頼できる日本語情報の不足"], ua: ["Дзвонити в ресторани нудно", "Брак надійної інфо"] },
      goals: { en: ["Eat out easily with friends", "Choose shops intuitively"], jp: ["友人と気軽に外食したい", "直感的に店を選びたい"], ua: ["Легко їсти з друзями", "Інтуїтивний вибір"] }
    },
@@ -295,7 +295,7 @@ const VEGWAM_DATA = {
      label: { en: "TYPE B: Supporter", jp: "TYPE B: サポーター", ua: "TYPE B: Саппортер" },
      name: { en: "Yumi Yamamoto (55 / Homemaker)", jp: "山本 由美 (55歳 / 主婦)", ua: "Юмі Ямамото (55)" },
      role: { en: "Homemaker", jp: "主婦", ua: "Домогосподарка" },
-     desc: { en: "Non-vegan, but daughter is vegan. Feels pressure not to make mistakes with family meals or gifts.", jp: "自身はノンヴィーガンだが、娘がヴィーガン。家族の食事や贈り物で「間違えたくない」というプレッシャーを感じている。", ua: "Не веган, але дочка веган. Відчуває тиск, щоб не помилитися з їжею." },
+     desc: { en: "Non-vegan, but daughter is vegan. Feels pressure not to make mistakes with family meals or gifts.", jp: "自身はノンヴィーガンだが、娘がヴィーガン。家族の食事や贈り物で「間違えたくない」というプレッシャーを感じている。", ua: "Не веган, але дочка веган. Відчуває тиск, щоб不 помилитися з їжею." },
      tags: [
        { en: "Ingredient check is hard", jp: "原材料確認が大変", ua: "Перевірка інгредієнтів — це складно" }, 
        { en: "Want to enjoy together", jp: "家族みんなで楽しみたい", ua: "Хочу насолоджуватися разом" }
@@ -1023,8 +1023,9 @@ const VegWamCaseStudy = ({ lang, project }: { lang: Language, project: Project }
        {/* 7. IA & Flow */}
        <section>
          <VegSectionHeader overline="IA & FLOW" title={lang === 'jp' ? "情報設計と体験フロー" : "IA & User Flow"} />
+         {/* Replaced custom component with static image */}
          <VegImageFigure
-           src="/ia-map.jpg"
+           src="/IA MAP.jpg"
            caption={lang === 'jp' ? "迷わず目的にたどり着くための情報構造" : "Simplified Information Architecture"}
            annotations={["Home", "Search", "Community", "Profile"]}
          />
@@ -1069,7 +1070,7 @@ const VegWamCaseStudy = ({ lang, project }: { lang: Language, project: Project }
                  {t.ui.p2.body[lang]}
                </p>
              </div>
-             <img src="https://placehold.co/600x1200/ffffff/145850?text=Search+Screen" className="rounded-xl shadow-lg border border-[#dddddd] order-1 md:order-2" />
+             <img src="/115 Filter Screen.jpg" alt="Search Screen" className="rounded-xl shadow-lg border border-[#dddddd] order-1 md:order-2" />
            </div>
          </div>
        </section>
