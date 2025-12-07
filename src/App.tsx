@@ -217,7 +217,7 @@ const LABELS = {
 
 const PROFILE = {
  name: { en: "Anastasiia Hrytsai", jp: "グリサイ アナスタシア", ua: "Анастасія Грицай" },
- email: "contact@example.com",
+ email: "hrytsai.anastasiia@gmail.com",
  linkedin: "https://linkedin.com",
  fullBio: {
    en: "I am a UI/UX Designer with a unique background in graphic design and multicultural communication. Over the last 3 years in Tokyo's startup scene, I've focused on 'Age-Tech'—creating digital bridges for the aging society.",
@@ -465,7 +465,7 @@ const VegMetaBlock = ({ lang }: { lang: Language }) => {
    type: { en: "Type", jp: "種別", ua: "Тип" },
    valType: { en: "Academic Project", jp: "学内課題", ua: "Академічний Проєкт" },
    duration: { en: "Duration", jp: "期間", ua: "Тривалість" },
-   valDuration: { en: "1 Month (2021-2022)", jp: "1ヶ月 (2021-2022)", ua: "1 Місяць (2021-2022)" },
+   valDuration: { en: "1 Month", jp: "1ヶ月", ua: "1 Місяць" },
    role: { en: "Role", jp: "担当", ua: "Роль" },
    valRole: { en: "UX Research / UI Design", jp: "UXリサーチ / UIデザイン", ua: "UX Дослідження / UI Дизайн" },
    tools: { en: "Tools", jp: "ツール", ua: "Інструменти" }
@@ -612,7 +612,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
            </div>
          </div>
          <div className="flex justify-center">
-             <img src="https://placehold.co/400x800/145850/ffffff?text=VegWam+App" alt="VegWam App Mockup" className="w-64 md:w-80 shadow-2xl rounded-[3rem] border-8 border-white" />
+             <img src="/vegwam-app-screen.jpg" alt="VegWam App Mockup" className="w-64 md:w-80 shadow-2xl rounded-[3rem] border-8 border-white" />
          </div>
        </div>
      </section>
@@ -1043,7 +1043,7 @@ export default function App() {
                <div className="absolute inset-0 bg-[#F1683C] rounded-full opacity-20 blur-3xl animate-pulse"></div>
                <div className="relative w-full h-full rounded-full border-[6px] border-white shadow-2xl overflow-hidden bg-gray-100">
                   <img
-                     src="/profile.png"
+                     src="/profile.jpg"
                      alt="Anastasiia Profile"
                      className="w-full h-full object-cover"
                   />
@@ -1214,13 +1214,13 @@ export default function App() {
      <footer id="contact" className="py-20 px-6 border-t border-gray-200 bg-white">
        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
          <div className="text-center md:text-left">
-           <h2 className="text-2xl font-black text-gray-900 mb-1">{PROFILE.name[lang]}</h2>
-           <p className="text-gray-500 text-sm">Designed & Built with React & Tailwind.</p>
+           <h2 className="text-lg font-bold text-gray-900 mb-1">© 2025 Hrytsai Anastasiia | Get In Touch</h2>
+           <p className="text-gray-500 text-sm">
+             <a href="mailto:hrytsai.anastasiia@gmail.com" className="hover:text-[#145850] transition-colors">hrytsai.anastasiia@gmail.com</a>
+           </p>
          </div>
          <div className="flex gap-4">
-           <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="bg-gray-100 hover:bg-blue-50 hover:text-blue-600 p-4 rounded-full transition-colors">
-             <Linkedin size={20} />
-           </a>
+           {/* LinkedIn icon removed */}
            <a href={`mailto:${PROFILE.email}`} className="bg-gray-100 hover:bg-emerald-50 hover:text-emerald-600 p-4 rounded-full transition-colors">
              <Mail size={20} />
            </a>
