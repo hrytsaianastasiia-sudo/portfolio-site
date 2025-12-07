@@ -119,7 +119,7 @@ const VEGWAM_DATA = {
    summary: {
      en: "An integrated lifestyle app for those living a vegan/plant-based life in Japan, connecting restaurants, products, information, and community.",
      jp: "日本でヴィーガン／プラントベースな生活を続けたい人と、その家族や友人のために、飲食店・商品・情報・コミュニティを一体化したライフスタイルアプリです。",
-     ua: "Інтегрований лайфстайл-додатокでthose living a vegan/plant-based life in Japan, connecting restaurants, products, information, and community."
+     ua: "Інтегрований лайфстайл-додаток для those living a vegan/plant-based life in Japan, connecting restaurants, products, information, and community."
    }
  },
  overview: {
@@ -196,7 +196,7 @@ const VEGWAM_DATA = {
      { en: "Desk Research", jp: "Desk Research", ua: "Кабінетне Дослідження" },
      { en: "Interview (5 Users)", jp: "Interview (5人)", ua: "Інтерв'ю (5 чол.)" },
      { en: "Persona & Journey", jp: "Persona & Journey", ua: "Персона та Шлях" },
-     { en: "UI Design", jp: "UI Design", ua: "UI Дизайн" }
+     { en: "UI Design", jp: "UI Design", ua: "UI Дизайн" } // This is already here, which is good.
    ],
    personaName: { en: "Namiko (20s)", jp: "Namiko (20代・女性)", ua: "Наміко (20+)" },
    personaRole: { en: "Beginner Vegan / Office Worker", jp: "ヴィーガンビギナー / 会社員", ua: "Новачок у веганстві / Офісний працівник" },
@@ -464,16 +464,6 @@ const PROJECTS: Project[] = [
 
 // --- COMPONENTS ---
 
-// Helper for the Green Circle Number Header style
-const VegStepHeader = ({ number, title }: { number: string; title: string }) => (
-  <div className="flex items-center gap-4 mb-6">
-    <div className="w-10 h-10 rounded-full bg-[#145850] text-white flex items-center justify-center font-bold text-xl shadow-md shrink-0">
-      {number}
-    </div>
-    <h3 className="text-2xl font-bold text-[#145850] tracking-wide">{title}</h3>
-  </div>
-);
-
 const VegTag = ({ children }: { children: React.ReactNode }) => (
  <span className="inline-block px-3 py-1 bg-white border border-[#f1683c] text-[#f1683c] text-[12px] font-bold uppercase rounded-full tracking-wider">
    {children}
@@ -498,11 +488,11 @@ const VegBackgroundCard = ({ title, text, theme }: { title: string, text: string
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full">
-      <div className={`bg-gradient-to-r ${gradients[theme]} p-6 text-center`}>
+      <div className={`bg-gradient-to-r ${gradients[theme]} p-6 text-center flex items-center justify-center h-24`}>
         <h4 className="text-white font-bold text-lg">{title}</h4>
       </div>
-      <div className="p-6 md:p-8 flex-1 flex items-center">
-        <p className="text-[#555555] leading-relaxed text-sm">
+      <div className="p-6 md:p-8 flex-1 flex items-center justify-center">
+        <p className="text-[#555555] leading-relaxed text-sm text-left">
           {text}
         </p>
       </div>
@@ -596,8 +586,9 @@ const VegProcessStrip = ({ steps }: { steps: string[] }) => (
  <div className="flex flex-wrap gap-2 md:gap-0 items-center justify-between bg-white p-4 rounded-xl border border-[#dddddd] mb-8 text-xs md:text-sm">
    {steps.map((step, i) => (
      <React.Fragment key={i}>
-       <div className={`flex items-center gap-2 font-bold ${i < 3 ? 'text-[#145850]' : 'text-[#111111]'}`}>
-         <div className={`w-6 h-6 rounded-full flex items-center justify-center ${i < 3 ? 'bg-[#145850] text-white' : 'border border-[#dddddd] text-[#555555]'}`}>
+       {/* CHANGED: Removed the condition (i < 3) so ALL steps are green */}
+       <div className="flex items-center gap-2 font-bold text-[#145850]">
+         <div className="w-6 h-6 rounded-full flex items-center justify-center bg-[#145850] text-white">
            {i + 1}
          </div>
          <span>{step}</span>
@@ -741,13 +732,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
            <VegQuoteBlock text={t.research.quote[lang]} author={t.research.personaName[lang]} />
          </div>
          
-         {/* Added the requested style for "UI Design" as step 4 at the end of Research section */}
-         <div className="mt-16 border-t border-dashed border-gray-200 pt-16">
-            <VegStepHeader number="4" title="UI Design" />
-            <p className="text-[#555555] mb-4">
-              {lang === 'en' ? "Transitioning from research to high-fidelity design." : "リサーチから得られた洞察をもとに、具体的なUIデザインへと落とし込みました。"}
-            </p>
-         </div>
+         {/* REMOVED: The separate "Step 4" block is no longer needed as it's integrated into the strip above */}
        </section>
 
        {/* 6. IA & Flow */}
@@ -1111,7 +1096,7 @@ export default function App() {
      {/* --- Hero Section (Trend: Big Typography & Split Layout) --- */}
      <section className="pt-40 pb-20 md:pt-48 md:pb-32 px-6">
        <div className="max-w-6xl mx-auto">
-         <div className="grid md:grid-cols-12 gap-12 items-start">
+         <div className="grid md:grid-cols-12 gap-12 items-center">
            
            <div className="md:col-span-8 space-y-8">
              <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 text-[#145850] rounded-full text-xs font-bold uppercase tracking-wider border border-emerald-100">
@@ -1146,7 +1131,7 @@ export default function App() {
 
            {/* Profile Image (Replaced with User's Unsplash Placeholder) */}
            <div className="md:col-span-4 flex justify-center md:justify-end relative">
-             <div className="relative w-64 h-64 md:w-80 md:h-80">
+             <div className="relative w-64 h-64 md:w-80 md:h-80 flex flex-col items-center justify-center">
                <div className="absolute inset-0 bg-[#F1683C] rounded-full opacity-20 blur-3xl animate-pulse"></div>
                <div className="relative w-full h-full rounded-full border-[6px] border-white shadow-2xl overflow-hidden bg-gray-100">
                   <img
