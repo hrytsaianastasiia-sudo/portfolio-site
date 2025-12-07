@@ -631,14 +631,6 @@ const VegMetaBlock = ({ lang }: { lang: Language }) => {
  );
 };
 
-const VegInsightCard = ({ title, body, label }: { title: string, body: string, label?: string }) => (
- <div className="bg-white border-l-4 border-[#145850] p-6 shadow-sm rounded-r-xl h-full flex flex-col">
-   {label && <p className="text-[#f1683c] text-xs font-bold uppercase mb-2">{label}</p>}
-   <h3 className="text-lg font-bold text-[#111111] mb-3">{title}</h3>
-   <p className="text-[#555555] text-sm leading-relaxed flex-1">{body}</p>
- </div>
-);
-
 const VegResearchSection = ({ lang }: { lang: Language }) => {
   const d = VEGWAM_DATA.research_new;
 
