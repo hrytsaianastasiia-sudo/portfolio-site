@@ -1,6 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react';
 import {
   X,
+  Linkedin,
   Mail,
   Globe,
   PenTool,
@@ -14,6 +15,9 @@ import {
   ChevronDown,
   Sparkles,
   Play,
+  Search,
+  Users,
+  Leaf
 } from 'lucide-react';
 
 // --- Types & Interfaces ---
@@ -64,97 +68,7 @@ interface Project {
  designSystem?: DesignSystem;
 }
 
-// --- VEGWAM CONTENT DATA ---
-const VEGWAM_DATA = {
- header: {
-   tag: { en: "VEGAN LIFESTYLE PLATFORM", jp: "VEGAN LIFESTYLE PLATFORM", ua: "ПЛАТФОРМА ВЕГАНСЬКОГО СТИЛЮ" },
-   title: { en: "VegWam", jp: "VegWam", ua: "VegWam" },
-   catchphrase: { en: "Making plant-based life closer to you.", jp: "プラントベースは、もっと身近になる。", ua: "Робимо рослинний спосіб життя ближчим." },
-   summary: {
-     en: "An integrated lifestyle app for those living a vegan/plant-based life in Japan, connecting restaurants, products, information, and community.",
-     jp: "日本でヴィーガン／プラントベースな生活を続けたい人と、その家族や友人のために、飲食店・商品・情報・コミュニティを一体化したライフスタイルアプリです。",
-     ua: "Інтегрований лайфстайл-додаток для тих, хто веде веганський спосіб життя в Японії, що поєднує ресторани, продукти та спільноту."
-   }
- },
- overview: {
-   overline: { en: "OVERVIEW", jp: "OVERVIEW", ua: "ОГЛЯД" },
-   title: { en: "Project Overview", jp: "作品概要", ua: "Огляд Проєкту" },
-   subtext: {
-     en: "An integrated platform responding to the unique needs for 'safety' and 'connection' that existing search services could not meet.",
-     jp: "既存の検索サービスでは満たせなかった、ヴィーガンユーザー特有の『安心感』と『つながり』へのニーズに応える統合プラットフォームです。",
-     ua: "Інтегрована платформа, що відповідає унікальним потребам у «безпеці» та «зв'язку», які не могли задовольнити існуючі сервіси."
-   }
- },
- insights: [
-   {
-     label: "INSIGHT 01",
-     title: { en: "Scattered Information", jp: "情報の分散", ua: "Розкидана Інформація" },
-     body: { en: "Restaurant, recipe, and product info is scattered, making it time-consuming to gather daily necessities.", jp: "飲食店、レシピ、商品情報がバラバラで、生活に必要な情報を集めるのに時間がかかる。", ua: "Інформація про ресторани та продукти розкидана, що ускладнює пошук." }
-   },
-   {
-     label: "INSIGHT 02",
-     title: { en: "Beginner Anxiety", jp: "ビギナーの不安", ua: "Тривога Новачків" },
-     body: { en: "Anxiety about ingredients ('Is this safe to eat?') and asking staff creates stress.", jp: "「これは食べて大丈夫？」という成分への不安や、店員への確認がストレスになる。", ua: "Тривога щодо інгредієнтів та необхідність розпитувати персонал створюють стрес." }
-   },
-   {
-     label: "INSIGHT 03",
-     title: { en: "Isolation", jp: "孤独感", ua: "Ізоляція" },
-     body: { en: "Few people understand the lifestyle, lacking a community to share concerns.", jp: "周りに理解者が少なく、情報交換や悩みを共有できるコミュニティがない。", ua: "Мало людей розуміють цей спосіб життя, відсутність спільноти для підтримки." }
-   }
- ],
- research: {
-   title: { en: "User Research", jp: "ユーザーリサーチ", ua: "Дослідження Користувачів" },
-   steps: [
-     { en: "Desk Research", jp: "Desk Research", ua: "Кабінетне Дослідження" },
-     { en: "Interview (5 Users)", jp: "Interview (5人)", ua: "Інтерв'ю (5 чол.)" },
-     { en: "Persona & Journey", jp: "Persona & Journey", ua: "Персона та Шлях" },
-     { en: "UI Design", jp: "UI Design", ua: "UI Дизайн" }
-   ],
-   personaName: { en: "Namiko (20s)", jp: "Namiko (20代・女性)", ua: "Наміко (20+)" },
-   personaRole: { en: "Beginner Vegan / Office Worker", jp: "ヴィーガンビギナー / 会社員", ua: "Новачок у веганстві / Офісний працівник" },
-   quote: {
-     en: "Calling restaurants to check 'Is this really vegan?' every time is the biggest stress. I stopped eating out with friends to avoid being a burden.",
-     jp: "お店に電話して『本当にヴィーガン対応か』を毎回確認するのが、一番ストレスです。友達との外食も、気を使わせてしまうので避けるようになりました。",
-     ua: "Телефонувати в ресторани, щоб перевірити «чи це дійсно веганське» — найбільший стрес. Я перестала їсти з друзями, щоб не бути тягарем."
-   }
- },
- ui: {
-   title: { en: "UI Highlights", jp: "UIデザインのポイント", ua: "Основні Елементи UI" },
-   p1: {
-     title: { en: "01. Home Screen for Peace of Mind", jp: "01. 安心して選べるホーム画面", ua: "01. Головний Екран для Спокою" },
-     body: {
-       en: "Designed to provide immediate relief by showing only information matching the user's diet. 'Certified' marks and reviews are visible at a glance.",
-       jp: "アプリを開いた瞬間、自分の食生活に合った情報だけが表示される安心感を設計。「認証済み」マークや「ユーザーレビュー」をファーストビューに配置し、信頼性を可視化しました。",
-       ua: "Розроблено так, щоб показувати лише інформацію, що відповідає дієті користувача. Знаки «Сертифіковано» та відгуки видно одразу."
-     }
-   },
-   p2: {
-     title: { en: "02. Stress-free Search", jp: "02. ストレスフリーな検索体験", ua: "02. Пошук без Стресу" },
-     body: {
-       en: "Implemented intuitive filters for 'Area' x 'Category' x 'Details' (e.g., Gluten-free). Smooth switching to map view allows finding safe spots nearby instantly.",
-       jp: "「エリア」×「カテゴリ」×「詳細条件（グルテンフリー等）」を直感的に絞り込めるフィルター機能を実装。地図表示との切り替えもスムーズにし、現在地周辺の安心できるお店を即座に見つけられます。",
-       ua: "Інтуїтивні фільтри «Район» x «Категорія» x «Деталі». Плавне перемикання на карту дозволяє миттєво знайти безпечні місця поруч."
-     }
-   }
- },
- outcomes: {
-   title: { en: "Outcomes & Reflection", jp: "成果と振り返り", ua: "Результати та Рефлексія" },
-   done: { en: "What I Did", jp: "What I Did", ua: "Що Зроблено" },
-   next: { en: "Next Steps", jp: "Next Steps", ua: "Наступні Кроки" },
-   listDone: {
-     en: ["Deep dive via user interviews", "Logo creation (Wigwam + Plants)", "Figma prototyping"],
-     jp: ["ユーザーインタビューによる課題の深掘り", "「Wigwam（住居）+ Plants」のブランドロゴ作成", "Figmaによるプロトタイプ作成と検証"],
-     ua: ["Глибинні інтерв'ю з користувачами", "Створення логотипу (Вігвам + Рослини)", "Прототипування у Figma"]
-   },
-   listNext: {
-     en: ["Usability testing with real vegans", "English support for inbound tourists", "Accessibility (WCAG 2.1) audit"],
-     jp: ["実際のヴィーガンユーザーによるユーザビリティテスト", "英語対応（インバウンド需要への対応）", "アクセシビリティ（WCAG 2.1）のチェックと改善"],
-     ua: ["Юзабіліті-тестування з реальними веганами", "Підтримка англійської для туристів", "Аудит доступності (WCAG 2.1)"]
-   }
- }
-};
-
-// --- DATA & CONTENT (FIXED LABELS) ---
+// --- CONSTANTS (Defined at the top to avoid ReferenceErrors) ---
 
 const LABELS = {
  nav: {
@@ -196,6 +110,117 @@ const LABELS = {
    outcome: { en: "Outcome", jp: "Outcome", ua: "Результат" },
    brand: { en: "Brand Identity", jp: "ブランドアイデンティティ", ua: "Айдентика Бренду" },
    prototype: { en: "Interactive Prototype", jp: "プロトタイプ", ua: "Інтерактивний Прототип" },
+ }
+};
+
+const VEGWAM_DATA = {
+ header: {
+   tag: { en: "VEGAN LIFESTYLE PLATFORM", jp: "VEGAN LIFESTYLE PLATFORM", ua: "ПЛАТФОРМА ВЕГАНСЬКОГО СТИЛЮ" },
+   title: { en: "VegWam", jp: "VegWam", ua: "VegWam" },
+   catchphrase: { en: "Making plant-based life closer to you.", jp: "プラントベースは、もっと身近になる。", ua: "Робимо рослинний спосіб життя ближчим." },
+   summary: {
+     en: "An integrated lifestyle app for those living a vegan/plant-based life in Japan, connecting restaurants, products, information, and community.",
+     jp: "日本でヴィーガン／プラントベースな生活を続けたい人と、その家族や友人のために、飲食店・商品・情報・コミュニティを一体化したライフスタイルアプリです。",
+     ua: "Інтегрований лайфстайл-додаток для тих, хто веде веганський спосіб життя в Японії, що поєднує ресторани, продукти та спільноту."
+   }
+ },
+ overview: {
+   header: { en: "OUTLINE", jp: "OUTLINE", ua: "OUTLINE" },
+   subHeader: { en: "Overview", jp: "作品概要", ua: "Огляд" },
+   theme: {
+     label: { en: "Theme", jp: "テーマ", ua: "Тема" },
+     title: { en: "INTEGRATED PLATFORM", jp: "INTEGRATED PLATFORM / 統合プラットフォーム", ua: "ІНТЕГРОВАНА ПЛАТФОРМА" },
+     content: {
+       en: "A proposal for an integrated platform connecting mobile apps and web services to solve the 'fragmentation of information' and 'lack of community' in vegan living.",
+       jp: "ヴィーガン生活における「情報の分散」と「コミュニティの欠如」を解決するための、モバイルアプリおよびWebサービスの統合プラットフォーム提案。",
+       ua: "Пропозиція інтегрованої платформи для вирішення проблем «розкиданої інформації» та «відсутності спільноти»."
+     }
+   },
+   concept: {
+     label: { en: "Concept", jp: "コンセプト", ua: "Концепція" },
+     catchphrase: {
+       en: "Plant-based, closer to you anytime.",
+       jp: "「プラントベースは気軽に、いつでもあなたのそばに」",
+       ua: "Рослинний світ ближче до вас."
+     },
+     description: {
+       en: "From finding restaurants to connecting with like-minded friends. We aimed to centralize all information necessary for vegan life (shops, recipes, knowledge) in one place, creating an experience where anyone can continue a plant-based life comfortably and happily.",
+       jp: "飲食店探しから、同じ志を持つ仲間との交流まで。\nヴィーガン生活に必要なすべての情報（店舗・レシピ・知識）を一箇所に集約し、誰もが無理なく、楽しくプラントベースライフを継続できる体験を目指しました。",
+       ua: "Від пошуку ресторанів до спілкування з однодумцями. Ми прагнули зібрати всю інформацію (магазини, рецепти, знання) в одному місці."
+     }
+   },
+   keywords: {
+     en: ["Vegan", "Community", "Search"],
+     jp: ["ヴィーガン (Vegan)", "コミュニティ (Community)", "検索 (Search)"],
+     ua: ["Веган", "Спільнота", "Пошук"]
+   }
+ },
+ insights: [
+   {
+     label: "INSIGHT 01",
+     title: { en: "Scattered Information", jp: "情報の分散", ua: "Розкидана Інформація" },
+     body: { en: "Restaurant, recipe, and product info is scattered, making it time-consuming to gather daily necessities.", jp: "飲食店、レシピ、商品情報がバラバラで、生活に必要な情報を集めるのに時間がかかる。", ua: "Інформація про ресторани та продукти розкидана, що ускладнює пошук." }
+   },
+   {
+     label: "INSIGHT 02",
+     title: { en: "Beginner Anxiety", jp: "ビギナーの不安", ua: "Тривога Новачків" },
+     body: { en: "Anxiety about ingredients ('Is this safe to eat?') and asking staff creates stress.", jp: "「これは食べて大丈夫？」という成分への不安や、店員への確認がストレスになる。", ua: "Тривога щодо інгредієнтів та необхідність розпитувати персонал створюють стрес." }
+   },
+   {
+     label: "INSIGHT 03",
+     title: { en: "Isolation", jp: "孤独感", ua: "Ізоляція" },
+     body: { en: "Few people understand the lifestyle, lacking a community to share concerns.", jp: "周りに理解者が少なく、情報交換や悩みを共有できるコミュニティがない。", ua: "Мало людей розуміють цей спосіб життя, відсутність спільнотиでサポート。" }
+   }
+ ],
+ research: {
+   title: { en: "User Research", jp: "ユーザーリサーチ", ua: "Дослідження Користувачів" },
+   steps: [
+     { en: "Desk Research", jp: "Desk Research", ua: "Кабінетне Дослідження" },
+     { en: "Interview (5 Users)", jp: "Interview (5人)", ua: "Інтерв'ю (5 чол.)" },
+     { en: "Persona & Journey", jp: "Persona & Journey", ua: "Персона та Шлях" },
+     { en: "UI Design", jp: "UI Design", ua: "UI Дизайн" }
+   ],
+   personaName: { en: "Namiko (20s)", jp: "Namiko (20代・女性)", ua: "Наміко (20+)" },
+   personaRole: { en: "Beginner Vegan / Office Worker", jp: "ヴィーガンビギナー / 会社員", ua: "Новачок у веганстві / Офісний працівник" },
+   quote: {
+     en: "Calling restaurants to check 'Is this really vegan?' every time is the biggest stress. I stopped eating out with friends to avoid being a burden.",
+     jp: "お店に電話して『本当にヴィーガン対応か』を毎回確認するのが、一番ストレスです。友達との外食も、気を使わせてしまうので避けるようになりました。",
+     ua: "Телефонувати в ресторани, щоб перевірити «чи це дійсно веганське» — найбільший стрес. Я перестала їсти з друзями, щоб не бути тягарем."
+   }
+ },
+ ui: {
+   title: { en: "UI Highlights", jp: "UIデザインのポイント", ua: "Основні Елементи UI" },
+   p1: {
+     title: { en: "01. Home Screen for Peace of Mind", jp: "01. 安心して選べるホーム画面", ua: "01. Головний Екранで安心" },
+     body: {
+       en: "Designed to provide immediate relief by showing only information matching the user's diet. 'Certified' marks and reviews are visible at a glance.",
+       jp: "アプリを開いた瞬間、自分の食生活に合った情報だけが表示される安心感を設計。「認証済み」マークや「ユーザーレビュー」をファーストビューに配置し、信頼性を可視化しました。",
+       ua: "Розроблено так, щоб показувати лише інформацію, що відповідає дієті користувача. Знаки「Сертифіковано」およびレビューが一目でわかります。"
+     }
+   },
+   p2: {
+     title: { en: "02. Stress-free Search", jp: "02. ストレスフリーな検索体験", ua: "02. Пошук無 Стресу" },
+     body: {
+       en: "Implemented intuitive filters for 'Area' x 'Category' x 'Details' (e.g., Gluten-free). Smooth switching to map view allows finding safe spots nearby instantly.",
+       jp: "「エリア」×「カテゴリ」×「詳細条件（グルテンフリー等）」を直感的に絞り込めるフィルター機能を実装。地図表示との切り替えもスムーズにし、現在地周辺の安心できるお店を即座に見つけられます。",
+       ua: "Інтуїтивні фільтри «Район» x「Категорія」 x «Деталі». Плавне перемикання на карту дозволяє миттєво знайти безпечні місця поруч."
+     }
+   }
+ },
+ outcomes: {
+   title: { en: "Outcomes & Reflection", jp: "成果と振り返り", ua: "Результати та Рефлексія" },
+   done: { en: "What I Did", jp: "What I Did", ua: "Що Зроблено" },
+   next: { en: "Next Steps", jp: "Next Steps", ua: "Наступні Кроки" },
+   listDone: {
+     en: ["Deep dive via user interviews", "Logo creation (Wigwam + Plants)", "Figma prototyping"],
+     jp: ["ユーザーインタビューによる課題の深掘り", "「Wigwam（住居）+ Plants」のブランドロゴ作成", "Figmaによるプロトタイプ作成と検証"],
+     ua: ["Глибинні інтерв'ю з користувачами", "Створення логотипу (Вігвам + Рослини)", "Прототипування у Figma"]
+   },
+   listNext: {
+     en: ["Usability testing with real vegans", "English support for inbound tourists", "Accessibility (WCAG 2.1) audit"],
+     jp: ["実際のヴィーガンユーザーによるユーザビリティテスト", "英語対応（インバウンド需要への対応）", "アクセシビリティ（WCAG 2.1）のチェックと改善"],
+     ua: ["Юзабіліті-тестування з реальними веганами", "Підтримка англійської для туристів", "Аудит доступності (WCAG 2.1)"]
+   }
  }
 };
 
@@ -418,8 +443,17 @@ const PROJECTS: Project[] = [
  }
 ];
 
+// --- COMPONENTS ---
 
-// --- VEGWAM COMPONENT HELPERS ---
+// Helper for the Green Circle Number Header style
+const VegStepHeader = ({ number, title }: { number: string; title: string }) => (
+  <div className="flex items-center gap-4 mb-6">
+    <div className="w-10 h-10 rounded-full bg-[#145850] text-white flex items-center justify-center font-bold text-xl shadow-md">
+      {number}
+    </div>
+    <h3 className="text-2xl font-bold text-[#145850] tracking-wide">{title}</h3>
+  </div>
+);
 
 const VegTag = ({ children }: { children: React.ReactNode }) => (
  <span className="inline-block px-3 py-1 bg-white border border-[#f1683c] text-[#f1683c] text-[12px] font-bold uppercase rounded-full tracking-wider">
@@ -441,29 +475,31 @@ const VegMetaBlock = ({ lang }: { lang: Language }) => {
    type: { en: "Type", jp: "種別", ua: "Тип" },
    valType: { en: "Academic Project", jp: "学内課題", ua: "Академічний Проєкт" },
    duration: { en: "Duration", jp: "期間", ua: "Тривалість" },
-   valDuration: { en: "1 Month", jp: "1ヶ月", ua: "1 Місяць" },
+   valDuration: { en: "1 Month", jp: "1ヶ月", ua: "1 Місяць" }, // Simplified to match screenshot
    role: { en: "Role", jp: "担当", ua: "Роль" },
    valRole: { en: "UX Research / UI Design", jp: "UXリサーチ / UIデザイン", ua: "UX Дослідження / UI Дизайн" },
    tools: { en: "Tools", jp: "ツール", ua: "Інструменти" }
  };
 
  return (
-   <div className="bg-white border border-[#dddddd] rounded-2xl p-6 md:p-8 grid grid-cols-2 gap-y-6 gap-x-4">
-     <div>
-       <p className="font-bold text-[#111111] mb-1">{labels.type[lang]}</p>
-       <p className="text-[#555555] text-sm">{labels.valType[lang]}</p>
-     </div>
-     <div>
-       <p className="font-bold text-[#111111] mb-1">{labels.duration[lang]}</p>
-       <p className="text-[#555555] text-sm">{labels.valDuration[lang]}</p>
-     </div>
-     <div>
-       <p className="font-bold text-[#111111] mb-1">{labels.role[lang]}</p>
-       <p className="text-[#555555] text-sm">{labels.valRole[lang]}</p>
-     </div>
-     <div>
-       <p className="font-bold text-[#111111] mb-1">{labels.tools[lang]}</p>
-       <p className="text-[#555555] text-sm">Figma, Illustrator</p>
+   <div className="bg-white border border-[#dddddd] rounded-2xl p-8 shadow-sm">
+     <div className="grid grid-cols-2 gap-y-8 gap-x-8">
+       <div>
+         <p className="font-bold text-[#111111] mb-2">{labels.type[lang]}</p>
+         <p className="text-[#555555] text-sm">{labels.valType[lang]}</p>
+       </div>
+       <div>
+         <p className="font-bold text-[#111111] mb-2">{labels.duration[lang]}</p>
+         <p className="text-[#555555] text-sm">{labels.valDuration[lang]}</p>
+       </div>
+       <div>
+         <p className="font-bold text-[#111111] mb-2">{labels.role[lang]}</p>
+         <p className="text-[#555555] text-sm">{labels.valRole[lang]}</p>
+       </div>
+       <div>
+         <p className="font-bold text-[#111111] mb-2">{labels.tools[lang]}</p>
+         <p className="text-[#555555] text-sm">Figma, Illustrator</p>
+       </div>
      </div>
    </div>
  );
@@ -574,7 +610,8 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
            <p className="text-[#555555] leading-relaxed">
              {t.header.summary[lang]}
            </p>
-           <div className="pt-4">
+           {/* VegMetaBlock positioned here */}
+           <div className="pt-6">
              <VegMetaBlock lang={lang} />
            </div>
          </div>
@@ -586,13 +623,47 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
 
      <div className="max-w-4xl mx-auto px-6 md:px-12 py-16 space-y-24">
       
-       {/* 2. Overview */}
+       {/* 2. Overview (Revamped Layout with Old Header Style & Vertical Stack) */}
        <section>
          <VegSectionHeader
-           overline={t.overview.overline[lang]}
-           title={t.overview.title[lang]}
-           subtext={t.overview.subtext[lang]}
+           overline={t.overview.header[lang]}
+           title={t.overview.subHeader[lang]}
          />
+
+         <div className="space-y-12">
+           {/* Vertical Stack: Theme First, Then Concept */}
+           <div className="flex flex-col gap-12">
+             {/* 1. Theme */}
+             <div>
+               <div className="flex items-center gap-2 text-[#145850] mb-2">
+                 <Leaf size={20} />
+                 <h3 className="font-bold uppercase tracking-wider text-sm">{t.overview.theme.label[lang]}</h3>
+               </div>
+               <h4 className="text-lg font-bold text-[#111111] mb-4">{t.overview.theme.title[lang]}</h4>
+               <p className="text-[#555555] leading-relaxed max-w-2xl">
+                 {t.overview.theme.content[lang]}
+               </p>
+             </div>
+
+             {/* 2. Concept */}
+             <div>
+               <div className="flex items-center gap-2 text-[#F1683C] mb-2">
+                 <Sparkles size={20} />
+                 <h3 className="font-bold uppercase tracking-wider text-sm">{t.overview.concept.label[lang]}</h3>
+               </div>
+               <h4 className="text-2xl md:text-3xl font-black text-[#145850] mb-4 leading-tight">
+                 {t.overview.concept.catchphrase[lang]}
+               </h4>
+               <p className="text-[#555555] leading-relaxed max-w-2xl">
+                 {t.overview.concept.description[lang]}
+               </p>
+             </div>
+           </div>
+         </div>
+       </section>
+
+       {/* 3. Insights */}
+       <section>
          <div className="grid md:grid-cols-3 gap-6">
            {t.insights.map((insight, i) => (
              <VegInsightCard key={i} title={insight.title[lang]} body={insight.body[lang]} label={insight.label} />
@@ -600,7 +671,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
        </section>
 
-       {/* 3. User Research */}
+       {/* 4. User Research */}
        <section>
          <VegSectionHeader overline="USER RESEARCH" title={t.research.title[lang]} />
          <VegProcessStrip steps={t.research.steps.map(s => s[lang])} />
@@ -609,9 +680,17 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
            <VegPersonaCard lang={lang} />
            <VegQuoteBlock text={t.research.quote[lang]} author={t.research.personaName[lang]} />
          </div>
+         
+         {/* Added the requested style for "UI Design" as step 4 at the end of Research section */}
+         <div className="mt-16 border-t border-dashed border-gray-200 pt-16">
+            <VegStepHeader number="4" title="UI Design" />
+            <p className="text-[#555555] mb-4">
+              {lang === 'en' ? "Transitioning from research to high-fidelity design." : "リサーチから得られた洞察をもとに、具体的なUIデザインへと落とし込みました。"}
+            </p>
+         </div>
        </section>
 
-       {/* 4. IA & Flow */}
+       {/* 5. IA & Flow */}
        <section>
          <VegSectionHeader overline="IA & FLOW" title={lang === 'jp' ? "情報設計と体験フロー" : "IA & User Flow"} />
          <VegImageFigure
@@ -621,10 +700,10 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          />
        </section>
 
-       {/* NEW: Prototype Section */}
+       {/* 6. Prototype Section */}
        <section>
          <VegSectionHeader overline="PROTOTYPE" title={lang === 'jp' ? "プロトタイプ" : "Interactive Prototype"} />
-         <div className="w-full h-[600px] md:h-[800px] bg-gray-100 rounded-2xl overflow-hidden border border-[#dddddd] shadow-inner">
+         <div className="w-full h-[800px] bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-inner">
            <iframe
              style={{ border: 'none' }}
              width="100%"
@@ -638,7 +717,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </p>
        </section>
 
-       {/* 5. UI Highlights */}
+       {/* 7. UI Highlights */}
        <section>
          <VegSectionHeader overline="UI HIGHLIGHTS" title={t.ui.title[lang]} />
          
@@ -665,7 +744,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
        </section>
 
-       {/* 6. Outcomes */}
+       {/* 8. Outcomes */}
        <section className="bg-white p-8 rounded-2xl border border-[#dddddd]">
          <VegSectionHeader overline="OUTCOMES" title={t.outcomes.title[lang]} />
          <div className="grid md:grid-cols-2 gap-8">
