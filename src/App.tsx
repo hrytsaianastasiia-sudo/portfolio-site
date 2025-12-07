@@ -1,7 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import {
   X,
-  Linkedin,
   Mail,
   Globe,
   PenTool,
@@ -683,7 +682,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
          
          {/* Added the requested style for "UI Design" as step 4 at the end of Research section */}
-         <div className="mt-16 border-t border-dashed border-gray-200 pt-16">
+         <div className="w-10 h-10 rounded-full bg-[#145850] text-white flex items-center justify-center font-bold text-xl shadow-md">
             <VegStepHeader number="4" title="UI Design" />
             <p className="text-[#555555] mb-4">
               {lang === 'en' ? "Transitioning from research to high-fidelity design." : "リサーチから得られた洞察をもとに、具体的なUIデザインへと落とし込みました。"}
