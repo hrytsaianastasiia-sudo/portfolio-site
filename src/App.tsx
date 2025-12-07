@@ -500,6 +500,7 @@ const PROJECTS: Project[] = [
      }
    }
  },
+ /*
  {
    id: "relaxon",
    thumbnail: "/relaxon-thumbnail.png",
@@ -555,6 +556,7 @@ const PROJECTS: Project[] = [
      }
    }
  }
+ */
 ];
 
 
