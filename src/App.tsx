@@ -102,7 +102,7 @@ const LABELS = {
    desc: {
      en: "UI/UX for Age-Tech startups in Tokyo.",
      jp: "東京のエイジテック系スタートアップでのUI/UXデザイン。",
-     ua: "UI/UX для Age-Tech стартапів у Токіо."
+     ua: "UI/UXで Age-Tech スタートアップでのUI/UXデザイン。"
    }
  },
  modal: {
@@ -502,7 +502,7 @@ const PROJECTS: Project[] = [
  },
  {
    id: "relaxon",
-   thumbnail: "https://placehold.co/1200x800/7c3aed/ffffff?text=RelaxON",
+   thumbnail: "/relaxon-thumbnail.png",
    accentColor: "bg-[#8b5cf6]",
    content: {
      en: {
@@ -557,8 +557,10 @@ const PROJECTS: Project[] = [
  }
 ];
 
+
 // --- COMPONENTS ---
 
+// Helper Components
 const VegTag = ({ children }: { children: React.ReactNode }) => (
  <span className="inline-block px-3 py-1 bg-white border border-[#f1683c] text-[#f1683c] text-[12px] font-bold uppercase rounded-full tracking-wider">
    {children}
@@ -1025,7 +1027,7 @@ const VegWamCaseStudy = ({ lang, project }: { lang: Language, project: Project }
          <VegImageFigure
            src="/IA MAP.jpg"
            caption={lang === 'jp' ? "迷わず目的にたどり着くための情報構造" : "Simplified Information Architecture"}
-           annotations={["Home", "Search", "Community", "Profile"]}
+           annotations={["Home", "Search", "Topics", "News", "My Page"]}
          />
        </section>
 
@@ -1046,7 +1048,78 @@ const VegWamCaseStudy = ({ lang, project }: { lang: Language, project: Project }
          </p>
        </section>
 
-       {/* 9. UI Highlights */}
+       {/* 9. Design System Section (NEW) */}
+       <section>
+         <VegSectionHeader overline="DESIGN SYSTEM" title={lang === 'jp' ? "デザインガイド" : "Design Guide"} />
+         
+         <div className="bg-white p-8 md:p-12 rounded-[2rem] border border-gray-100 shadow-sm">
+            {/* Header */}
+            <div className="mb-12">
+               <h3 className="text-3xl font-bold text-[#145850] mb-2">Design Guide</h3>
+               <div className="h-1.5 w-24 bg-[#F1683C] rounded-full"></div>
+            </div>
+
+            {/* Typography */}
+            <div className="grid md:grid-cols-2 gap-12 mb-16">
+               {/* English */}
+               <div>
+                  <div className="flex items-center gap-2 mb-6">
+                     <span className="text-3xl">🇬🇧</span>
+                  </div>
+                  <div className="flex items-start gap-6">
+                     <div className="text-center">
+                        <span className="text-7xl md:text-8xl font-normal text-[#111111] leading-none block">Aa</span>
+                        <p className="text-[#145850] font-bold mt-2">Roboto</p>
+                     </div>
+                     <div className="space-y-2 pt-2">
+                        <p className="font-bold text-[#111111] text-lg">Roboto Bold</p>
+                        <p className="font-medium text-[#111111] text-lg">Roboto Medium</p>
+                        <p className="font-normal text-[#111111] text-lg">Roboto Regular</p>
+                     </div>
+                  </div>
+               </div>
+
+               {/* Japanese */}
+               <div className="md:border-l md:border-gray-200 md:pl-12">
+                  <div className="flex items-center gap-2 mb-6">
+                     <span className="text-3xl">🇯🇵</span>
+                  </div>
+                  <div className="flex items-start gap-6">
+                     <div className="text-center">
+                        <span className="text-7xl md:text-8xl font-normal text-[#111111] leading-none block">Aa</span>
+                        <p className="text-[#145850] font-bold mt-2 whitespace-nowrap">Noto Sans JP</p>
+                     </div>
+                     <div className="space-y-2 pt-2">
+                        <p className="font-bold text-[#111111] text-lg">Noto Sans JP Bold</p>
+                        <p className="font-medium text-[#111111] text-lg">Noto Sans JP Medium</p>
+                        <p className="font-normal text-[#111111] text-lg">Noto Sans JP Regular</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            {/* Colors */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
+               {[
+                  { hex: "#145850", name: "#145850" },
+                  { hex: "#f1683c", name: "#f1683c" },
+                  { hex: "#e6eddd", name: "#e6eddd" },
+                  { hex: "#ffffff", name: "#ffffff", border: true },
+                  { hex: "#c4c4c4", name: "#c4c4c4" }
+               ].map((color, i) => (
+                  <div key={i} className="flex flex-col items-center">
+                     <p className="text-[#145850] font-bold text-sm mb-3 uppercase tracking-wider">{color.name}</p>
+                     <div 
+                        className={`w-full aspect-square rounded-3xl shadow-sm ${color.border ? 'border border-gray-200' : ''}`} 
+                        style={{ backgroundColor: color.hex }}
+                     ></div>
+                  </div>
+               ))}
+            </div>
+         </div>
+       </section>
+
+       {/* 10. UI Highlights */}
        <section>
          <VegSectionHeader overline="UI HIGHLIGHTS" title={t.ui.title[lang]} />
          
