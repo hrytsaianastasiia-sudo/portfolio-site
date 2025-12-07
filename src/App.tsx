@@ -65,7 +65,7 @@ interface Project {
  designSystem?: DesignSystem;
 }
 
-// --- VEGWAM CONTENT DATA (DEEP DIVE) ---
+// --- VEGWAM CONTENT DATA ---
 const VEGWAM_DATA = {
  header: {
    tag: { en: "VEGAN LIFESTYLE PLATFORM", jp: "VEGAN LIFESTYLE PLATFORM", ua: "ПЛАТФОРМА ВЕГАНСЬКОГО СТИЛЮ" },
@@ -236,7 +236,7 @@ const INTERESTS = [
 const PROJECTS: Project[] = [
  {
    id: "vegwam",
-   thumbnail: "/vegwam-thumbnail.png", // RESTORED: Local file path
+   thumbnail: "/vegwam-thumbnail.png", 
    accentColor: "bg-[#F1683C]",
    figmaUrl: "https://www.figma.com/proto/EZdHxq5rKrYkzWlTOWp70g/VegWam?page-id=164%3A15&node-id=164-990&p=f&viewport=1564%2C770%2C0.19&t=rGunCvN7EX5X2loa-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=164%3A84",
    designSystem: {
