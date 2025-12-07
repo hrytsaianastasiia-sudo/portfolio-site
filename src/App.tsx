@@ -18,7 +18,9 @@ import {
   Search,
   Users,
   AlertCircle,
-  MapPin
+  MapPin,
+  Flag,
+  AlertTriangle
 } from 'lucide-react';
 
 // --- Types & Interfaces ---
@@ -278,20 +280,20 @@ const VEGWAM_DATA = {
    matrix: {
      yAxis: { top: "Long History", bottom: "Short History" },
      xAxis: { left: "Supporter", right: "Vegan" },
-     note: { en: "Note: VegWam targets not just the individual, but also the 'supporter layer' (bottom right).", jp: "Note: VegWamは本人だけでなく、右下の「サポーター層」も主要ターゲットとして捉える点が特徴。", ua: "Note: VegWam націлений також на «саппортерів»." }
+     note: { en: "Note: VegWam targets not just the individual, but also the 'supporter layer' (bottom right).", jp: "VegWamは「ヴィーガン本人」だけでなく\n「一緒に過ごす家族・友人」も主要ユーザーとして想定", ua: "Note: VegWam націлений також на «саппортерів»." }
    },
    typeA: {
-     label: { en: "TYPE A: The Vegan", jp: "TYPE A: ヴィーガン本人", ua: "TYPE A: Веган" },
+     label: { en: "TYPE A: Vegan", jp: "TYPE A: ヴィーガン本人", ua: "TYPE A: Веган" },
      tag: { en: "Wants to continue naturally", jp: "日常の中で続けたい", ua: "Хоче продовжувати природно" },
      name: { en: "Ken Sato (32)", jp: "佐藤 健 (32)", ua: "Кен Сато (32)" },
      role: { en: "Office Worker / Tokyo", jp: "会社員 / 都内", ua: "Офісний працівник / Токіо" },
-     desc: { en: "Vegan for 3 years due to partner. Busy with work on weekdays, enjoys cafe hopping on weekends. Wants to be 'natural', not 'high maintenance'.", jp: "ヴィーガン歴3年。パートナーの影響で開始。平日は仕事が忙しく外食中心だが、週末はカフェ巡りを楽しむ。「意識高い系」ではなく「自然体」でいたい。", ua: "Веган 3 роки. Зайнятий роботою, любить кафе на вихідних. Хоче бути «природним»." },
+     desc: { en: "Vegan for 3 years. Busy with work on weekdays, enjoys cafe hopping on weekends. Wants to be 'natural', not 'high maintenance'.", jp: "ヴィーガン歴3年。パートナーの影響で開始。平日は仕事が忙しく外食中心だが、週末はカフェ巡りを楽しむ。「意識高い系」ではなく「自然体」でいたい。", ua: "Веган 3 роки. Зайнятий роботою, любить кафе на вихідних. Хоче бути «природним»." },
      pains: { en: ["Checking restaurants by phone is tedious", "Lack of trusted info"], jp: ["入店前の電話確認が面倒", "信頼できる日本語情報の不足"], ua: ["Дзвонити в ресторани нудно", "Брак надійної інфо"] },
      goals: { en: ["Eat out easily with friends", "Choose shops intuitively"], jp: ["友人と気軽に外食したい", "直感的に店を選びたい"], ua: ["Легко їсти з друзями", "Інтуїтивний вибір"] }
    },
    typeB: {
-     label: { en: "TYPE B: The Supporter", jp: "TYPE B: サポーター", ua: "TYPE B: Саппортер" },
-     name: { en: "Yumi Yamamoto (55)", jp: "山本 由美 (55)", ua: "Юмі Ямамото (55)" },
+     label: { en: "TYPE B: Supporter", jp: "TYPE B: サポーター", ua: "TYPE B: Саппортер" },
+     name: { en: "Yumi Yamamoto (55 / Homemaker)", jp: "山本 由美 (55歳 / 主婦)", ua: "Юмі Ямамото (55)" },
      role: { en: "Homemaker", jp: "主婦", ua: "Домогосподарка" },
      desc: { en: "Non-vegan, but daughter is vegan. Feels pressure not to make mistakes with family meals or gifts.", jp: "自身はノンヴィーガンだが、娘がヴィーガン。家族の食事や贈り物で「間違えたくない」というプレッシャーを感じている。", ua: "Не веган, але дочка веган. Відчуває тиск, щоб не помилитися з їжею." },
      tags: [
@@ -629,6 +631,14 @@ const VegMetaBlock = ({ lang }: { lang: Language }) => {
  );
 };
 
+const VegInsightCard = ({ title, body, label }: { title: string, body: string, label?: string }) => (
+ <div className="bg-white border-l-4 border-[#145850] p-6 shadow-sm rounded-r-xl h-full flex flex-col">
+   {label && <p className="text-[#f1683c] text-xs font-bold uppercase mb-2">{label}</p>}
+   <h3 className="text-lg font-bold text-[#111111] mb-3">{title}</h3>
+   <p className="text-[#555555] text-sm leading-relaxed flex-1">{body}</p>
+ </div>
+);
+
 const VegResearchSection = ({ lang }: { lang: Language }) => {
   const d = VEGWAM_DATA.research_new;
 
@@ -724,95 +734,164 @@ const VegPersonaSection = ({ lang }: { lang: Language }) => {
   const d = VEGWAM_DATA.persona_new;
 
   return (
-    <section>
-      <VegSectionHeader overline={d.header} title={d.subHeader[lang]} />
+    <section className="my-20">
+      <div className="text-center mb-12">
+        <p className="text-[#F1683C] text-xs font-bold uppercase tracking-widest mb-2">{d.header}</p>
+        <h2 className="text-3xl md:text-4xl font-black text-[#111111]">{d.subHeader[lang]}</h2>
+      </div>
       
-      <div className="grid lg:grid-cols-12 gap-8 items-start">
+      {/* Changed to flex-col for 1 column layout */}
+      <div className="flex flex-col gap-12 max-w-4xl mx-auto">
         
-        {/* Matrix (Custom Component) */}
-        <div className="lg:col-span-4 bg-white p-6 rounded-2xl border border-gray-100 shadow-sm aspect-square flex flex-col">
-          <h4 className="font-bold text-[#111111] mb-6 text-center">User Segmentation</h4>
-          <div className="flex-1 relative border-l-2 border-b-2 border-gray-200 m-4">
-            {/* Labels */}
-            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-bold">{d.matrix.yAxis.top}</span>
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-bold">{d.matrix.yAxis.bottom}</span>
-            <span className="absolute top-1/2 -left-6 -translate-y-1/2 -rotate-90 text-xs text-gray-400 font-bold whitespace-nowrap">{d.matrix.xAxis.left}</span>
-            <span className="absolute top-1/2 -right-6 -translate-y-1/2 rotate-90 text-xs text-gray-400 font-bold whitespace-nowrap">{d.matrix.xAxis.right}</span>
-
-            {/* Plot Points */}
-            <div className="absolute top-[30%] right-[30%] w-6 h-6 bg-[#145850] rounded-full shadow-lg border-2 border-white z-10 flex items-center justify-center group cursor-pointer">
-              <span className="absolute top-full mt-2 font-bold text-[#145850] text-xs whitespace-nowrap">TYPE A</span>
-            </div>
-            <div className="absolute bottom-[30%] left-[30%] w-6 h-6 bg-[#F1683C] rounded-full shadow-lg border-2 border-white z-10 flex items-center justify-center group cursor-pointer">
-              <span className="absolute top-full mt-2 font-bold text-[#F1683C] text-xs whitespace-nowrap">TYPE B</span>
-            </div>
-
-            {/* Quadrant Lines */}
-            <div className="absolute inset-0 border-t border-r border-gray-100 opacity-50"></div>
+        {/* Matrix (Now on Top) - Fixed Height */}
+        <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm w-full">
+          <div className="flex items-center gap-2 mb-6 justify-center">
+             <Layout size={20} className="text-[#111111]" />
+             <h4 className="font-bold text-[#111111] text-lg">{lang === 'jp' ? 'セグメンテーション' : 'Segmentation'}</h4>
           </div>
-          <p className="text-[10px] text-gray-500 bg-blue-50 p-3 rounded-lg mt-4 leading-snug">
-            {d.matrix.note[lang]}
-          </p>
+          
+          <div className="relative m-2 h-[400px] md:h-[500px]">
+            {/* L-Shape Axis Lines */}
+            <div className="absolute left-8 top-8 bottom-12 w-px bg-gray-200"></div>
+            <div className="absolute left-8 right-8 bottom-12 h-px bg-gray-200"></div>
+
+            {/* Axis Labels */}
+            <span className="absolute top-1/2 left-0 -translate-y-1/2 -rotate-90 text-xs text-gray-400 font-bold tracking-wide whitespace-nowrap origin-center">
+                {lang === 'jp' ? 'ヴィーガン歴 (長)' : 'Vegan History (Long)'}
+            </span>
+            <div className="absolute bottom-4 left-8 right-8 flex justify-between text-xs text-gray-400 font-bold tracking-wide px-4">
+                <span>{lang === 'jp' ? '当事者本人' : 'Vegan'}</span>
+                <span>{lang === 'jp' ? 'サポーター' : 'Supporter'}</span>
+            </div>
+
+            {/* Clusters */}
+            
+            {/* Green Cluster (Top Left - Vegans) */}
+            <div className="absolute top-[10%] left-[15%] w-[40%] h-[40%] border-2 border-dashed border-emerald-100 rounded-full flex items-center justify-center animate-pulse-slow"></div>
+            
+            {/* Type A: Ethics (Main Hover Target from Image) */}
+            <div className="absolute top-[20%] left-[30%] z-20 group cursor-pointer">
+               <div className="w-6 h-6 bg-[#4ADE80] rounded-full shadow-md border-2 border-white transition-transform group-hover:scale-110"></div>
+               {/* Tooltip */}
+               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1.5 bg-slate-800 text-white text-[10px] md:text-xs font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none transform translate-y-1 group-hover:translate-y-0 z-50 whitespace-nowrap">
+                  {lang === 'jp' ? 'Aさん（倫理・環境重視）' : lang === 'ua' ? 'Пан А (Етика/Довкілля)' : 'Mr. A (Ethics/Environment)'}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-4 border-transparent border-t-slate-800"></div>
+               </div>
+            </div>
+
+            {/* Type B: Health */}
+            <div className="absolute top-[35%] left-[20%] z-20 group cursor-pointer">
+               <div className="w-6 h-6 bg-[#4ADE80] rounded-full shadow-md border-2 border-white opacity-80 transition-transform group-hover:scale-110 group-hover:opacity-100"></div>
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1.5 bg-slate-800 text-white text-[10px] md:text-xs font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none transform translate-y-1 group-hover:translate-y-0 z-50 whitespace-nowrap">
+                  {lang === 'jp' ? 'Bさん（健康志向）' : lang === 'ua' ? 'Пані B (Здоров\'я)' : 'Ms. B (Health)'}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-4 border-transparent border-t-slate-800"></div>
+               </div>
+            </div>
+
+            {/* Orange Cluster (Bottom Right - Supporters) */}
+            <div className="absolute bottom-[15%] right-[15%] w-[40%] h-[40%] border-2 border-dashed border-orange-100 rounded-full flex items-center justify-center"></div>
+            
+            {/* Supporter C: Mother */}
+            <div className="absolute bottom-[30%] right-[30%] z-20 group cursor-pointer">
+               <div className="w-6 h-6 bg-[#F1683C] rounded-full shadow-md border-2 border-white transition-transform group-hover:scale-110"></div>
+               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1.5 bg-slate-800 text-white text-[10px] md:text-xs font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none transform translate-y-1 group-hover:translate-y-0 z-50 whitespace-nowrap">
+                  {lang === 'jp' ? 'Cさん（家族・母）' : lang === 'ua' ? 'Пані C (Мати)' : 'Ms. C (Mother)'}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-4 border-transparent border-t-slate-800"></div>
+               </div>
+            </div>
+
+            {/* Supporter D: Friend */}
+            <div className="absolute bottom-[25%] right-[40%] z-20 group cursor-pointer">
+               <div className="w-6 h-6 bg-[#F1683C] rounded-full shadow-md border-2 border-white opacity-80 transition-transform group-hover:scale-110 group-hover:opacity-100"></div>
+               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-1.5 bg-slate-800 text-white text-[10px] md:text-xs font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none transform translate-y-1 group-hover:translate-y-0 z-50 whitespace-nowrap">
+                  {lang === 'jp' ? 'Dさん（友人）' : lang === 'ua' ? 'Д (Друг)' : 'Friend D'}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-4 border-transparent border-t-slate-800"></div>
+               </div>
+            </div>
+
+          </div>
+
+          <div className="mt-6 text-center border-t border-gray-50 pt-4">
+            <p className="text-xs text-gray-500 leading-relaxed">
+              {d.matrix.note[lang]}
+            </p>
+          </div>
         </div>
 
-        {/* Persona Cards */}
-        <div className="lg:col-span-8 space-y-8">
+        {/* Persona Cards (Now Below) */}
+        <div className="space-y-6">
           
-          {/* Type A */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg flex flex-col md:flex-row">
-            <div className="md:w-1/3 h-64 md:h-auto bg-gray-200 relative">
-               <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80" className="absolute inset-0 w-full h-full object-cover" alt="Persona A" />
+          {/* Type A (Green) */}
+          <div className="bg-white rounded-[2rem] overflow-hidden border border-gray-100 shadow-xl flex flex-col md:flex-row relative">
+            <div className="absolute top-4 right-6 text-xs font-bold text-gray-400 z-10">{d.typeA.tag[lang]}</div>
+            
+            {/* Image Side */}
+            <div className="md:w-5/12 relative h-72 md:h-auto">
+               <img 
+                 src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&q=80" 
+                 className="absolute inset-0 w-full h-full object-cover" 
+                 alt="Persona A" 
+               />
+               <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6 pt-20">
+                 <h3 className="text-2xl font-bold text-white leading-tight">{d.typeA.name[lang]}</h3>
+                 <p className="text-white/80 text-xs font-medium">{d.typeA.role[lang]}</p>
+               </div>
             </div>
-            <div className="md:w-2/3 p-6 md:p-8">
-              <div className="flex items-center justify-between mb-4">
-                <span className="bg-[#145850] text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wide">
+
+            {/* Content Side */}
+            <div className="md:w-7/12 p-8 flex flex-col">
+              <div className="mb-4">
+                <span className="bg-[#145850] text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wide inline-block mb-3">
                   {d.typeA.label[lang]}
                 </span>
-                <span className="text-gray-400 text-xs font-bold">{d.typeA.tag[lang]}</span>
+                <p className="text-sm text-[#111111] leading-relaxed font-medium">
+                  {d.typeA.desc[lang]}
+                </p>
               </div>
-              
-              <h3 className="text-2xl font-bold text-[#111111] mb-1">{d.typeA.name[lang]}</h3>
-              <p className="text-sm text-gray-500 mb-6 font-medium">{d.typeA.role[lang]}</p>
-              
-              <p className="text-[#555555] text-sm leading-relaxed mb-6 border-l-4 border-[#145850] pl-4">
-                {d.typeA.desc[lang]}
-              </p>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-6 mt-auto">
                 <div>
-                  <p className="text-[#F1683C] text-xs font-bold uppercase mb-2 flex items-center gap-1"><AlertCircle size={12}/> Pain Points</p>
-                  <ul className="text-xs text-gray-600 space-y-1">
-                    {d.typeA.pains[lang].map((p,i) => <li key={i}>• {p}</li>)}
+                  <p className="text-[#D64742] text-xs font-bold uppercase mb-3 flex items-center gap-1">
+                    <AlertTriangle size={14} fill="currentColor" /> Pain Points
+                  </p>
+                  <ul className="text-xs text-gray-600 space-y-2 list-disc list-outside ml-3 marker:text-[#D64742]">
+                    {d.typeA.pains[lang].map((p,i) => <li key={i}>{p}</li>)}
                   </ul>
                 </div>
                 <div>
-                  <p className="text-[#145850] text-xs font-bold uppercase mb-2 flex items-center gap-1"><Users size={12}/> Goals</p>
-                  <ul className="text-xs text-gray-600 space-y-1">
-                    {d.typeA.goals[lang].map((g,i) => <li key={i}>• {g}</li>)}
+                  <p className="text-[#007AFF] text-xs font-bold uppercase mb-3 flex items-center gap-1">
+                    <Flag size={14} fill="currentColor" /> Goals
+                  </p>
+                  <ul className="text-xs text-gray-600 space-y-2 list-disc list-outside ml-3 marker:text-[#007AFF]">
+                    {d.typeA.goals[lang].map((g,i) => <li key={i}>{g}</li>)}
                   </ul>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Type B (Smaller) */}
-          <div className="bg-[#fff5f2] rounded-2xl p-6 md:p-8 border border-[#ffdccf] flex flex-col md:flex-row items-center md:items-start gap-6">
-             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md shrink-0">
-               <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80" className="w-full h-full object-cover" alt="Persona B" />
+          {/* Type B (Pink) */}
+          <div className="bg-[#fff5f2] rounded-[2rem] p-6 border border-[#ffdccf] flex flex-col sm:flex-row items-center gap-6">
+             <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-md shrink-0">
+               <img 
+                 src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80" 
+                 className="w-full h-full object-cover" 
+                 alt="Persona B" 
+               />
              </div>
-             <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                   <span className="text-[#F1683C] font-bold text-sm uppercase">{d.typeB.label[lang]}</span>
-                   <span className="w-px h-3 bg-gray-300"></span>
-                   <span className="font-bold text-[#111111]">{d.typeB.name[lang]}</span>
-                   <span className="text-xs text-gray-500">({d.typeB.role[lang]})</span>
+             <div className="flex-1 text-center sm:text-left">
+                <div className="flex flex-col sm:flex-row items-center sm:items-baseline gap-2 sm:gap-3 mb-2 justify-center sm:justify-start">
+                   <span className="bg-[#D64742] text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wide">
+                     {d.typeB.label[lang]}
+                   </span>
+                   <span className="font-bold text-[#111111] text-lg">{d.typeB.name[lang]}</span>
                 </div>
-                <p className="text-sm text-[#555555] leading-relaxed mb-4">
+                <p className="text-sm text-[#555555] leading-relaxed mb-3">
                   {d.typeB.desc[lang]}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                   {d.typeB.tags.map((t, i) => (
-                    <span key={i} className="bg-white text-gray-600 px-3 py-1 rounded-full text-xs font-bold shadow-sm border border-[#ffdccf]">
+                    <span key={i} className="bg-white text-[#D64742] px-3 py-1 rounded-full text-[10px] font-bold shadow-sm border border-[#ffdccf]">
                       {t[lang]}
                     </span>
                   ))}
@@ -848,7 +927,7 @@ const VegImageFigure = ({ src, caption, annotations }: { src: string, caption: s
 );
 
 // --- VEGWAM CASE STUDY COMPONENT (MULTILINGUAL) ---
-const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
+const VegWamCaseStudy = ({ lang, project }: { lang: Language, project: Project }) => {
  const t = VEGWAM_DATA;
  
  return (
@@ -953,7 +1032,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
        <section>
          <VegSectionHeader overline="IA & FLOW" title={lang === 'jp' ? "情報設計と体験フロー" : "IA & User Flow"} />
          <VegImageFigure
-           src="https://placehold.co/1200x600/e6eddd/145850?text=Information+Architecture+Map"
+           src="/ia-map.jpg"
            caption={lang === 'jp' ? "迷わず目的にたどり着くための情報構造" : "Simplified Information Architecture"}
            annotations={["Home", "Search", "Community", "Profile"]}
          />
@@ -967,7 +1046,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
              style={{ border: 'none' }}
              width="100%"
              height="100%"
-             src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent("https://www.figma.com/proto/EZdHxq5rKrYkzWlTOWp70g/VegWam?page-id=164%3A15&node-id=164-990&p=f&viewport=1564%2C770%2C0.19&t=rGunCvN7EX5X2loa-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=164%3A84")}`}
+             src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.figmaUrl || '')}`}
              allowFullScreen
            ></iframe>
          </div>
@@ -982,7 +1061,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          
          <div className="space-y-16">
            <div className="grid md:grid-cols-2 gap-12 items-center">
-             <img src="https://placehold.co/600x1200/ffffff/145850?text=Home+Screen" className="rounded-xl shadow-lg border border-[#dddddd]" />
+             <img src="/Home Screen01.jpg" alt="Home Screen" className="rounded-xl shadow-lg border border-[#dddddd]" />
              <div>
                <h3 className="text-xl font-bold text-[#145850] mb-4">{t.ui.p1.title[lang]}</h3>
                <p className="text-[#555555] leading-relaxed mb-6">
@@ -1101,7 +1180,7 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
        <div className="flex-1 overflow-y-auto">
         
          {project.id === 'vegwam' ? (
-           <VegWamCaseStudy lang={lang} />
+           <VegWamCaseStudy lang={lang} project={project} />
          ) : (
            <>
              {/* Header */}
