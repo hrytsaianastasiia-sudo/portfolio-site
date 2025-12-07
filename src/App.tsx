@@ -560,7 +560,6 @@ const PROJECTS: Project[] = [
 
 // --- COMPONENTS ---
 
-// Helper Components
 const VegTag = ({ children }: { children: React.ReactNode }) => (
  <span className="inline-block px-3 py-1 bg-white border border-[#f1683c] text-[#f1683c] text-[12px] font-bold uppercase rounded-full tracking-wider">
    {children}
@@ -1039,7 +1038,7 @@ const VegWamCaseStudy = ({ lang, project }: { lang: Language, project: Project }
              style={{ border: 'none' }}
              width="100%"
              height="100%"
-             src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.figmaUrl || '')}`}
+             src={project.figmaUrl ? `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.figmaUrl)}` : ''}
              allowFullScreen
            ></iframe>
          </div>
