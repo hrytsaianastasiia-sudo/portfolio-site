@@ -1043,7 +1043,7 @@ export default function App() {
                <div className="absolute inset-0 bg-[#F1683C] rounded-full opacity-20 blur-3xl animate-pulse"></div>
                <div className="relative w-full h-full rounded-full border-[6px] border-white shadow-2xl overflow-hidden bg-gray-100">
                   <img
-                     src="/profile.jpg"
+                     src="/profile.png"
                      alt="Anastasiia Profile"
                      className="w-full h-full object-cover"
                   />
