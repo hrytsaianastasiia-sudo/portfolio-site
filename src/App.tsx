@@ -437,7 +437,7 @@ const PROJECTS: Project[] = [
  },
  {
    id: "navitime",
-   thumbnail: "/navitime-thumbnail.png",
+   thumbnail: "https://placehold.co/1200x800/1e3a8a/ffffff?text=NAVITIME+Redesign",
    accentColor: "bg-[#007AFF]",
    figmaUrl: "https://www.figma.com/proto/hzx81CrdGeHadYO9whxsqw/%E8%87%AA%E8%BB%A2%E8%BB%8ANAVIGATION-FINAL?page-id=0%3A1&node-id=3-31&p=f&viewport=401%2C481%2C0.22&t=NsaxSieERH8gXG8d-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=3%3A31",
    designSystem: {
