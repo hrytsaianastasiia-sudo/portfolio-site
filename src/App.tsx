@@ -819,7 +819,7 @@ const VegPersonaSection = ({ lang }: { lang: Language }) => {
             {/* Image Side */}
             <div className="md:w-5/12 relative h-72 md:h-auto">
                <img 
-                 src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&q=80" 
+                 src="/japaneseMale.jpeg" 
                  className="absolute inset-0 w-full h-full object-cover" 
                  alt="Persona A" 
                />
@@ -865,7 +865,7 @@ const VegPersonaSection = ({ lang }: { lang: Language }) => {
           <div className="bg-[#fff5f2] rounded-[2rem] p-6 border border-[#ffdccf] flex flex-col sm:flex-row items-center gap-6">
              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white shadow-md shrink-0">
                <img 
-                 src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80" 
+                 src="/japaneseFemale50s.jpeg" 
                  className="w-full h-full object-cover" 
                  alt="Persona B" 
                />
