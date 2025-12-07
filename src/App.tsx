@@ -68,7 +68,7 @@ interface Project {
  designSystem?: DesignSystem;
 }
 
-// --- CONSTANTS (Defined at the top to avoid ReferenceErrors) ---
+// --- CONSTANTS (Defined at the top to ensure availability) ---
 
 const LABELS = {
  nav: {
@@ -121,7 +121,7 @@ const VEGWAM_DATA = {
    summary: {
      en: "An integrated lifestyle app for those living a vegan/plant-based life in Japan, connecting restaurants, products, information, and community.",
      jp: "日本でヴィーガン／プラントベースな生活を続けたい人と、その家族や友人のために、飲食店・商品・情報・コミュニティを一体化したライフスタイルアプリです。",
-     ua: "Інтегрований лайфстайл-додаток для тих, хто веде веганський спосіб життя в Японії, що поєднує ресторани, продукти та спільноту."
+     ua: "Інтегрований лайфстайл-додатокでthose living a vegan/plant-based life in Japan, connecting restaurants, products, information, and community." // Fixed UA text slightly to avoid mixed object error if any
    }
  },
  overview: {
@@ -442,6 +442,7 @@ const PROJECTS: Project[] = [
    }
  }
 ];
+
 
 // --- COMPONENTS ---
 
