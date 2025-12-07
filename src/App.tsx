@@ -1192,7 +1192,7 @@ export default function App() {
              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
              <Mail size={40} className="mb-4" />
              <h4 className="text-2xl font-bold">{LABELS.sectionTitles.contact[lang]}</h4>
-             <p className="opacity-90 mt-2 text-sm">contact@example.com</p>
+             <p className="opacity-90 mt-2 text-sm">hrytsai.anastasiia@gmail.com</p>
            </div>
 
            {/* 6. Interests (New Section) */}
