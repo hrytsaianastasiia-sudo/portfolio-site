@@ -557,7 +557,6 @@ const PROJECTS: Project[] = [
  }
 ];
 
-
 // --- COMPONENTS ---
 
 const VegTag = ({ children }: { children: React.ReactNode }) => (
@@ -1038,7 +1037,7 @@ const VegWamCaseStudy = ({ lang, project }: { lang: Language, project: Project }
              style={{ border: 'none' }}
              width="100%"
              height="100%"
-             src={project.figmaUrl ? `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.figmaUrl)}` : ''}
+             src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.figmaUrl || '')}`}
              allowFullScreen
            ></iframe>
          </div>
