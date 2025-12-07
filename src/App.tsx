@@ -17,23 +17,14 @@ import {
   Play,
 } from 'lucide-react';
 
-
 // --- Types & Interfaces ---
 
-
 type Language = 'en' | 'jp' | 'ua';
-// interface LocalizedText {
-//   en: string;
-//   jp: string;
-//   ua: string;
-// }
-
 
 interface DesignSystem {
  colors: { hex: string; name: string }[];
  typography: { name: string; usage: string }[];
 }
-
 
 interface CaseStudyContent {
  role: string;
@@ -53,7 +44,6 @@ interface CaseStudyContent {
  logoConcept?: string;
 }
 
-
 interface ProjectContent {
  title: string;
  category: string;
@@ -61,7 +51,6 @@ interface ProjectContent {
  tags: string[];
  caseStudy: CaseStudyContent;
 }
-
 
 interface Project {
  id: string;
@@ -75,7 +64,6 @@ interface Project {
  };
  designSystem?: DesignSystem;
 }
-
 
 // --- VEGWAM CONTENT DATA (DEEP DIVE) ---
 const VEGWAM_DATA = {
@@ -167,9 +155,7 @@ const VEGWAM_DATA = {
  }
 };
 
-
 // --- DATA & CONTENT (FIXED LABELS) ---
-
 
 const LABELS = {
  nav: {
@@ -214,7 +200,6 @@ const LABELS = {
  }
 };
 
-
 const PROFILE = {
  name: { en: "Anastasiia Hrytsai", jp: "グリサイ アナスタシア", ua: "Анастасія Грицай" },
  email: "hrytsai.anastasiia@gmail.com",
@@ -226,7 +211,6 @@ const PROFILE = {
  }
 };
 
-
 const SKILLS = [
  { name: "Figma", level: 90 },
  { name: "Adobe Suite", level: 85 },
@@ -234,13 +218,11 @@ const SKILLS = [
  { name: "UX Research", level: 75 },
 ];
 
-
 const LANGUAGES = [
  { lang: "Japanese", level: "N2" },
  { lang: "English", level: "Business" },
  { lang: "Ukrainian", level: "Native" },
 ];
-
 
 const INTERESTS = [
  { en: "Vegan Lifestyle", jp: "ヴィーガン", ua: "Веганство" },
@@ -251,11 +233,10 @@ const INTERESTS = [
  { en: "Japanese Sign Language", jp: "日本手話", ua: "Японська мова жестів" }
 ];
 
-
 const PROJECTS: Project[] = [
  {
    id: "vegwam",
-   thumbnail: "/vegwam-thumbnail.png",
+   thumbnail: "/vegwam-thumbnail.png", // RESTORED: Local file path
    accentColor: "bg-[#F1683C]",
    figmaUrl: "https://www.figma.com/proto/EZdHxq5rKrYkzWlTOWp70g/VegWam?page-id=164%3A15&node-id=164-990&p=f&viewport=1564%2C770%2C0.19&t=rGunCvN7EX5X2loa-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=164%3A84",
    designSystem: {
@@ -440,15 +421,12 @@ const PROJECTS: Project[] = [
 
 
 // --- VEGWAM COMPONENT HELPERS ---
-// --- VEGWAM COMPONENT HELPERS ---
-
 
 const VegTag = ({ children }: { children: React.ReactNode }) => (
  <span className="inline-block px-3 py-1 bg-white border border-[#f1683c] text-[#f1683c] text-[12px] font-bold uppercase rounded-full tracking-wider">
    {children}
  </span>
 );
-
 
 const VegSectionHeader = ({ overline, title, subtext }: { overline: string, title: string, subtext?: string }) => (
  <div className="mb-8">
@@ -458,7 +436,6 @@ const VegSectionHeader = ({ overline, title, subtext }: { overline: string, titl
    {subtext && <p className="text-[#555555] text-sm md:text-base max-w-2xl">{subtext}</p>}
  </div>
 );
-
 
 const VegMetaBlock = ({ lang }: { lang: Language }) => {
  const labels = {
@@ -470,7 +447,6 @@ const VegMetaBlock = ({ lang }: { lang: Language }) => {
    valRole: { en: "UX Research / UI Design", jp: "UXリサーチ / UIデザイン", ua: "UX Дослідження / UI Дизайн" },
    tools: { en: "Tools", jp: "ツール", ua: "Інструменти" }
  };
-
 
  return (
    <div className="bg-white border border-[#dddddd] rounded-2xl p-6 md:p-8 grid grid-cols-2 gap-y-6 gap-x-4">
@@ -494,7 +470,6 @@ const VegMetaBlock = ({ lang }: { lang: Language }) => {
  );
 };
 
-
 const VegInsightCard = ({ title, body, label }: { title: string, body: string, label?: string }) => (
  <div className="bg-white border-l-4 border-[#145850] p-6 shadow-sm rounded-r-xl h-full flex flex-col">
    {label && <p className="text-[#f1683c] text-xs font-bold uppercase mb-2">{label}</p>}
@@ -502,7 +477,6 @@ const VegInsightCard = ({ title, body, label }: { title: string, body: string, l
    <p className="text-[#555555] text-sm leading-relaxed flex-1">{body}</p>
  </div>
 );
-
 
 const VegPersonaCard = ({ lang }: { lang: Language }) => (
  <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#dddddd]">
@@ -534,7 +508,6 @@ const VegPersonaCard = ({ lang }: { lang: Language }) => (
  </div>
 );
 
-
 const VegQuoteBlock = ({ text, author }: { text: string, author: string }) => (
  <div className="bg-[#f7f8f5] p-6 border-l-4 border-[#145850] rounded-r-lg my-6">
    <p className="text-lg italic font-medium text-[#111111] mb-3 leading-relaxed">
@@ -543,7 +516,6 @@ const VegQuoteBlock = ({ text, author }: { text: string, author: string }) => (
    <p className="text-[#555555] text-xs font-bold uppercase tracking-wider">— {author}</p>
  </div>
 );
-
 
 const VegProcessStrip = ({ steps }: { steps: string[] }) => (
  <div className="flex flex-wrap gap-2 md:gap-0 items-center justify-between bg-white p-4 rounded-xl border border-[#dddddd] mb-8 text-xs md:text-sm">
@@ -560,7 +532,6 @@ const VegProcessStrip = ({ steps }: { steps: string[] }) => (
    ))}
  </div>
 );
-
 
 const VegImageFigure = ({ src, caption, annotations }: { src: string, caption: string, annotations?: string[] }) => (
  <figure className="my-8">
@@ -582,9 +553,6 @@ const VegImageFigure = ({ src, caption, annotations }: { src: string, caption: s
    </figcaption>
  </figure>
 );
-
-
-
 
 // --- VEGWAM CASE STUDY COMPONENT (MULTILINGUAL) ---
 const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
@@ -617,7 +585,6 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
        </div>
      </section>
 
-
      <div className="max-w-4xl mx-auto px-6 md:px-12 py-16 space-y-24">
       
        {/* 2. Overview */}
@@ -634,7 +601,6 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
        </section>
 
-
        {/* 3. User Research */}
        <section>
          <VegSectionHeader overline="USER RESEARCH" title={t.research.title[lang]} />
@@ -646,7 +612,6 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
        </section>
 
-
        {/* 4. IA & Flow */}
        <section>
          <VegSectionHeader overline="IA & FLOW" title={lang === 'jp' ? "情報設計と体験フロー" : "IA & User Flow"} />
@@ -656,7 +621,6 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
            annotations={["Home", "Search", "Community", "Profile"]}
          />
        </section>
-
 
        {/* NEW: Prototype Section */}
        <section>
@@ -675,7 +639,6 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </p>
        </section>
 
-
        {/* 5. UI Highlights */}
        <section>
          <VegSectionHeader overline="UI HIGHLIGHTS" title={t.ui.title[lang]} />
@@ -691,7 +654,6 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
              </div>
            </div>
 
-
            <div className="grid md:grid-cols-2 gap-12 items-center">
              <div className="order-2 md:order-1">
                <h3 className="text-xl font-bold text-[#145850] mb-4">{t.ui.p2.title[lang]}</h3>
@@ -703,7 +665,6 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
            </div>
          </div>
        </section>
-
 
        {/* 6. Outcomes */}
        <section className="bg-white p-8 rounded-2xl border border-[#dddddd]">
@@ -728,15 +689,12 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
        </section>
 
-
      </div>
    </div>
  );
 };
 
-
 // --- Components ---
-
 
 const LanguageSwitcher = ({
  current,
@@ -754,7 +712,6 @@ const LanguageSwitcher = ({
    { code: 'ua', label: 'Українська', flag: '🇺🇦' }
  ];
  const currentLang = languages.find(l => l.code === current);
-
 
  return (
    <div className="relative">
@@ -788,7 +745,6 @@ const LanguageSwitcher = ({
  );
 };
 
-
 const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: () => void; project: Project | null; lang: Language }) => {
  useEffect(() => {
    if (isOpen) { document.body.style.overflow = 'hidden'; }
@@ -796,10 +752,8 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
    return () => { document.body.style.overflow = 'unset'; };
  }, [isOpen]);
 
-
  if (!isOpen || !project) return null;
  const content = project.content[lang];
-
 
  return (
    <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-gray-900/60 backdrop-blur-sm p-0 md:p-6 transition-all duration-200">
@@ -808,7 +762,6 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
        <button onClick={onClose} className="absolute top-4 right-4 z-20 bg-white/50 backdrop-blur-md p-3 rounded-full hover:bg-white transition-all shadow-sm">
          <X size={20} className="text-gray-800" />
        </button>
-
 
        <div className="flex-1 overflow-y-auto">
         
@@ -829,7 +782,6 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
                {/* Texture Overlay */}
                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
              </div>
-
 
              {/* Body */}
              <div className="max-w-4xl mx-auto p-6 md:p-12 space-y-16">
@@ -854,7 +806,6 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
                  </div>
                </div>
 
-
                {/* Overview */}
                <section className="space-y-6">
                  <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
@@ -864,7 +815,6 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
                    {content.caseStudy.overview}
                  </p>
                </section>
-
 
                {/* Figma Prototype Section (Conditional) */}
                {project.figmaUrl && (
@@ -887,7 +837,6 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
                  </section>
                )}
 
-
                {/* Problem & Solution Cards */}
                <div className="grid md:grid-cols-2 gap-6">
                  <div className="bg-red-50/50 p-8 rounded-3xl border border-red-100">
@@ -903,7 +852,6 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
                    <p className="text-gray-700 leading-relaxed">{content.caseStudy.solution}</p>
                  </div>
                </div>
-
 
                {/* Design System (If available) */}
                {project.designSystem && (
@@ -938,7 +886,6 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
                  </section>
                )}
 
-
                {/* Results */}
                <section className={`p-8 md:p-12 rounded-3xl text-center text-white ${project.accentColor}`}>
                  <h3 className="text-2xl font-bold mb-4">Outcome</h3>
@@ -946,7 +893,6 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
                    {content.caseStudy.results}
                  </p>
                </section>
-
 
              </div>
            </>
@@ -957,16 +903,13 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
  );
 };
 
-
 export default function App() {
  const [lang, setLang] = useState<Language>('jp');
  const [activeProject, setActiveProject] = useState<Project | null>(null);
 
-
  const scrollToSection = (id: string) => {
    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
  };
-
 
  return (
    <div className="min-h-screen bg-[#FAFAFA] font-sans text-gray-900 selection:bg-[#145850] selection:text-white">
@@ -992,12 +935,10 @@ export default function App() {
        </div>
      </nav>
 
-
      {/* Mobile Language Switcher (Fixed Bottom Right - DROPS UP) */}
      <div className="md:hidden fixed bottom-6 right-6 z-50">
        <LanguageSwitcher current={lang} onChange={setLang} direction="up" />
      </div>
-
 
      {/* --- Hero Section (Trend: Big Typography & Split Layout) --- */}
      <section className="pt-40 pb-20 md:pt-48 md:pb-32 px-6">
@@ -1024,7 +965,6 @@ export default function App() {
                {LABELS.hero.intro[lang]}
              </p>
 
-
              <div className="pt-4">
                <button
                  onClick={() => scrollToSection('work')}
@@ -1035,7 +975,6 @@ export default function App() {
                </button>
              </div>
            </div>
-
 
            {/* Profile Image (Replaced with User's Unsplash Placeholder) */}
            <div className="md:col-span-4 flex justify-center md:justify-end relative">
@@ -1059,11 +998,9 @@ export default function App() {
              </div>
            </div>
 
-
          </div>
        </div>
      </section>
-
 
      {/* --- Projects Section (Trend: Large Cards with Hover Reveal) --- */}
      <section id="work" className="py-24 px-6 bg-white rounded-t-[3rem] shadow-[0_-20px_60px_-15px_rgba(0,0,0,0.05)]">
@@ -1072,7 +1009,6 @@ export default function App() {
            <h2 className="text-3xl font-black text-gray-900 mb-2">{LABELS.sectionTitles.work[lang]}</h2>
            <div className="h-1 w-20 bg-[#F1683C]"></div>
          </div>
-
 
          <div className="grid gap-12 md:gap-16">
            {PROJECTS.map((project) => (
@@ -1112,7 +1048,6 @@ export default function App() {
        </div>
      </section>
 
-
      {/* --- Bento Grid About Section (Trend: Bento Grids) --- */}
      <section id="about" className="py-24 px-6 bg-[#FAFAFA]">
        <div className="max-w-6xl mx-auto">
@@ -1120,7 +1055,6 @@ export default function App() {
            <h2 className="text-3xl font-black text-gray-900 mb-2">{LABELS.sectionTitles.about[lang]}</h2>
            <div className="h-1 w-20 bg-[#145850]"></div>
          </div>
-
 
          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(180px,auto)]">
            
@@ -1132,7 +1066,6 @@ export default function App() {
              </p>
            </div>
 
-
            {/* 2. Experience (Tall) */}
            <div className="md:col-span-4 bg-[#145850] p-8 md:p-10 rounded-[2rem] shadow-lg text-white flex flex-col justify-between relative overflow-hidden">
              <Briefcase size={32} className="text-emerald-300 mb-4" />
@@ -1142,7 +1075,6 @@ export default function App() {
              </div>
              <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
            </div>
-
 
            {/* 3. Skills */}
            <div className="md:col-span-5 bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100">
@@ -1164,7 +1096,6 @@ export default function App() {
              </div>
            </div>
 
-
            {/* 4. Languages */}
            <div className="md:col-span-3 bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100">
              <h4 className="font-bold text-gray-400 uppercase tracking-wider mb-6 flex items-center gap-2">
@@ -1180,7 +1111,6 @@ export default function App() {
              </ul>
            </div>
 
-
            {/* 5. Contact (Action) */}
            <div className="md:col-span-4 bg-[#F1683C] p-8 rounded-[2rem] shadow-lg text-white flex flex-col justify-center items-center text-center relative overflow-hidden group cursor-pointer" onClick={() => scrollToSection('contact')}>
              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
@@ -1188,7 +1118,6 @@ export default function App() {
              <h4 className="text-2xl font-bold">{LABELS.sectionTitles.contact[lang]}</h4>
              <p className="opacity-90 mt-2 text-sm">contact@example.com</p>
            </div>
-
 
            {/* 6. Interests (New Section) */}
            <div className="md:col-span-12 bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100">
@@ -1204,11 +1133,9 @@ export default function App() {
              </div>
            </div>
 
-
          </div>
        </div>
      </section>
-
 
      {/* --- Footer --- */}
      <footer id="contact" className="py-20 px-6 border-t border-gray-200 bg-white">
@@ -1228,14 +1155,12 @@ export default function App() {
        </div>
      </footer>
 
-
      <Modal
        isOpen={!!activeProject}
        onClose={() => setActiveProject(null)}
        project={activeProject}
        lang={lang}
      />
-
 
    </div>
  );
