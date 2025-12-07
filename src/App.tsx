@@ -1,7 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import {
   X,
-  Linkedin,
   Mail,
   Globe,
   PenTool,
