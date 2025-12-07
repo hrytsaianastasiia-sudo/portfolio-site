@@ -1,7 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react';
 import {
   X,
-  Mail,
+  Mail, // Linkedin removed
   Globe,
   PenTool,
   Layout,
@@ -14,8 +14,6 @@ import {
   ChevronDown,
   Sparkles,
   Play,
-  Search,
-  Users,
   Leaf
 } from 'lucide-react';
 
@@ -67,7 +65,7 @@ interface Project {
  designSystem?: DesignSystem;
 }
 
-// --- CONSTANTS (Defined at the top to ensure availability) ---
+// --- CONSTANTS ---
 
 const LABELS = {
  nav: {
@@ -120,7 +118,7 @@ const VEGWAM_DATA = {
    summary: {
      en: "An integrated lifestyle app for those living a vegan/plant-based life in Japan, connecting restaurants, products, information, and community.",
      jp: "日本でヴィーガン／プラントベースな生活を続けたい人と、その家族や友人のために、飲食店・商品・情報・コミュニティを一体化したライフスタイルアプリです。",
-     ua: "Інтегрований лайфстайл-додатокでthose living a vegan/plant-based life in Japan, connecting restaurants, products, information, and community." // Fixed UA text slightly to avoid mixed object error if any
+     ua: "Інтегрований лайфстайл-додатокでthose living a vegan/plant-based life in Japan, connecting restaurants, products, information, and community."
    }
  },
  overview: {
@@ -431,11 +429,11 @@ const PROJECTS: Project[] = [
          role: "UI Дизайнер",
          timeline: "3 Тижні",
          tools: ["Adobe XD"],
-         overview: "Додаток для зняття стресу з акцентом на заспокійливі візуали.",
-         problem: "Додатки для медитації часто виглядають надто клінічно.",
-         solution: "Використано гласморфізм для створення заспокійливої атмосфери.",
-         process: ["Мудборд", "Візуальні пошуки"],
-         results: "High-fidelity дизайн, що підкреслює емоційний комфорт."
+         overview: "Додатокで stress-relief app focusing on calming visuals and audio.",
+         problem: "Meditation apps often look too clinical.",
+         solution: "Used Glassmorphism and pastel gradients to create an immersive, calming mood.",
+         process: ["Moodboard", "Visual Exploration"],
+         results: "High-fidelity visual design that emphasizes emotional well-being."
        }
      }
    }
@@ -448,7 +446,7 @@ const PROJECTS: Project[] = [
 // Helper for the Green Circle Number Header style
 const VegStepHeader = ({ number, title }: { number: string; title: string }) => (
   <div className="flex items-center gap-4 mb-6">
-    <div className="w-10 h-10 rounded-full bg-[#145850] text-white flex items-center justify-center font-bold text-xl shadow-md">
+    <div className="w-10 h-10 rounded-full bg-[#145850] text-white flex items-center justify-center font-bold text-xl shadow-md shrink-0">
       {number}
     </div>
     <h3 className="text-2xl font-bold text-[#145850] tracking-wide">{title}</h3>
@@ -682,7 +680,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
          
          {/* Added the requested style for "UI Design" as step 4 at the end of Research section */}
-         <div className="w-10 h-10 rounded-full bg-[#145850] text-white flex items-center justify-center font-bold text-xl shadow-md">
+         <div className="mt-16 border-t border-dashed border-gray-200 pt-16">
             <VegStepHeader number="4" title="UI Design" />
             <p className="text-[#555555] mb-4">
               {lang === 'en' ? "Transitioning from research to high-fidelity design." : "リサーチから得られた洞察をもとに、具体的なUIデザインへと落とし込みました。"}
