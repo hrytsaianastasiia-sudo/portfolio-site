@@ -14,7 +14,9 @@ import {
   ChevronDown,
   Sparkles,
   Play,
-  Leaf
+  Leaf,
+  ArrowUp,
+  HelpCircle // Added for the "Why now?" icon
 } from 'lucide-react';
 
 // --- Types & Interfaces ---
@@ -150,6 +152,26 @@ const VEGWAM_DATA = {
      en: ["Vegan", "Community", "Search"],
      jp: ["ヴィーガン (Vegan)", "コミュニティ (Community)", "検索 (Search)"],
      ua: ["Веган", "Спільнота", "Пошук"]
+   }
+ },
+ background: {
+   header: { en: "BACKGROUND", jp: "BACKGROUND", ua: "ПЕРЕДУМОВИ" },
+   title: { en: "Why VegWam Now?", jp: "なぜ今、VegWamなのか？", ua: "Чому VegWam зараз?" },
+   card1: {
+     title: { en: "Spread of Vegan Culture", jp: "ヴィーガン文化の広がり", ua: "Поширення веганської культури" },
+     text: {
+       en: "In recent years, the vegan/plant-based market has been expanding due to rising interest in health and environmental issues. However, in Japan, the quantity and quality of information vary, making it difficult to know \"where to buy what.\"",
+       jp: "ここ数年で、健康志向や環境問題への関心の高まりから、ヴィーガン・プラントベース市場が拡大しています。一方で、日本ではまだ情報の量・質にばらつきがあり、「どこで何が買えるのか」が分かりにくい状況です。",
+       ua: "Останніми роками ринок рослинної продукції розширився. Однак в Японії якість інформації різниться, що ускладнює пошук продуктів."
+     }
+   },
+   card2: {
+     title: { en: "Fragmentation of Information", jp: "情報の分散", ua: "Фрагментація інформації" },
+     text: {
+       en: "Information sources are scattered across SNS, blogs, and personal sites, making it hard to judge if info is up-to-date. There was a demand for a \"trustworthy hub\" that covers all aspects of life, including dining and daily goods.",
+       jp: "SNSやブログ、個人のまとめサイトなど情報源がバラバラで、最新情報かどうかも判断しづらいのが現状です。外食・日用品・コスメなど生活全体をカバーできる「信頼できるハブ」が求められていました。",
+       ua: "Джерела інформації розкидані, що ускладнює перевірку актуальності. Був потрібен «надійний хаб», що охоплює харчування та побут."
+     }
    }
  },
  insights: [
@@ -468,6 +490,27 @@ const VegSectionHeader = ({ overline, title, subtext }: { overline: string, titl
  </div>
 );
 
+// New Component for Background Section Cards
+const VegBackgroundCard = ({ title, text, theme }: { title: string, text: string, theme: 'orange' | 'green' }) => {
+  const gradients = {
+    orange: 'from-[#F1683C] to-[#ff9f7c]',
+    green: 'from-[#145850] to-[#2a857a]'
+  };
+
+  return (
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full">
+      <div className={`bg-gradient-to-r ${gradients[theme]} p-6 text-center`}>
+        <h4 className="text-white font-bold text-lg">{title}</h4>
+      </div>
+      <div className="p-6 md:p-8 flex-1 flex items-center">
+        <p className="text-[#555555] leading-relaxed text-sm">
+          {text}
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const VegMetaBlock = ({ lang }: { lang: Language }) => {
  const labels = {
    type: { en: "Type", jp: "種別", ua: "Тип" },
@@ -660,7 +703,27 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
        </section>
 
-       {/* 3. Insights */}
+       {/* 3. Background Section (NEW) */}
+       <section>
+         <VegSectionHeader 
+           overline={t.background.header[lang]} 
+           title={t.background.title[lang]} 
+         />
+         <div className="grid md:grid-cols-2 gap-6">
+           <VegBackgroundCard 
+             title={t.background.card1.title[lang]} 
+             text={t.background.card1.text[lang]} 
+             theme="orange" 
+           />
+           <VegBackgroundCard 
+             title={t.background.card2.title[lang]} 
+             text={t.background.card2.text[lang]} 
+             theme="green" 
+           />
+         </div>
+       </section>
+
+       {/* 4. Insights */}
        <section>
          <div className="grid md:grid-cols-3 gap-6">
            {t.insights.map((insight, i) => (
@@ -669,7 +732,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
        </section>
 
-       {/* 4. User Research */}
+       {/* 5. User Research */}
        <section>
          <VegSectionHeader overline="USER RESEARCH" title={t.research.title[lang]} />
          <VegProcessStrip steps={t.research.steps.map(s => s[lang])} />
@@ -688,7 +751,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
        </section>
 
-       {/* 5. IA & Flow */}
+       {/* 6. IA & Flow */}
        <section>
          <VegSectionHeader overline="IA & FLOW" title={lang === 'jp' ? "情報設計と体験フロー" : "IA & User Flow"} />
          <VegImageFigure
@@ -698,7 +761,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          />
        </section>
 
-       {/* 6. Prototype Section */}
+       {/* 7. Prototype Section */}
        <section>
          <VegSectionHeader overline="PROTOTYPE" title={lang === 'jp' ? "プロトタイプ" : "Interactive Prototype"} />
          <div className="w-full h-[800px] bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-inner">
@@ -715,7 +778,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </p>
        </section>
 
-       {/* 7. UI Highlights */}
+       {/* 8. UI Highlights */}
        <section>
          <VegSectionHeader overline="UI HIGHLIGHTS" title={t.ui.title[lang]} />
          
@@ -742,7 +805,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
        </section>
 
-       {/* 8. Outcomes */}
+       {/* 9. Outcomes */}
        <section className="bg-white p-8 rounded-2xl border border-[#dddddd]">
          <VegSectionHeader overline="OUTCOMES" title={t.outcomes.title[lang]} />
          <div className="grid md:grid-cols-2 gap-8">
@@ -982,6 +1045,19 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
 export default function App() {
  const [lang, setLang] = useState<Language>('jp');
  const [activeProject, setActiveProject] = useState<Project | null>(null);
+ const [showScrollTop, setShowScrollTop] = useState(false);
+
+ useEffect(() => {
+   const handleScroll = () => {
+     setShowScrollTop(window.scrollY > 400);
+   };
+   window.addEventListener('scroll', handleScroll);
+   return () => window.removeEventListener('scroll', handleScroll);
+ }, []);
+
+ const scrollToTop = () => {
+   window.scrollTo({ top: 0, behavior: 'smooth' });
+ };
 
  const scrollToSection = (id: string) => {
    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -992,7 +1068,13 @@ export default function App() {
      
      {/* --- Floating Nav (Trend: Island UI) --- */}
      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-40 bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg shadow-gray-200/50 rounded-full px-6 py-3 flex items-center gap-6 md:gap-8 max-w-sm md:max-w-lg w-full justify-between">
-       <div className="w-8 h-8 bg-[#145850] text-white rounded-full flex items-center justify-center font-serif font-bold text-lg">A</div>
+       <button 
+         onClick={scrollToTop} 
+         className="w-8 h-8 bg-[#145850] text-white rounded-full flex items-center justify-center font-serif font-bold text-lg hover:scale-105 transition-transform"
+         aria-label="Scroll to top"
+       >
+         A
+       </button>
        <div className="flex gap-4 md:gap-8">
          {Object.entries(LABELS.nav).map(([key, label]) => (
            <button
@@ -1015,6 +1097,17 @@ export default function App() {
      <div className="md:hidden fixed bottom-6 right-6 z-50">
        <LanguageSwitcher current={lang} onChange={setLang} direction="up" />
      </div>
+
+     {/* --- Scroll To Top Button --- */}
+     <button
+        onClick={scrollToTop}
+        className={`fixed bottom-20 right-6 md:bottom-10 md:right-10 z-40 p-3 md:p-4 bg-[#145850] text-white rounded-full shadow-lg transition-all duration-300 hover:bg-[#0f4640] hover:-translate-y-1 ${
+          showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+        }`}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp size={24} />
+      </button>
 
      {/* --- Hero Section (Trend: Big Typography & Split Layout) --- */}
      <section className="pt-40 pb-20 md:pt-48 md:pb-32 px-6">
@@ -1192,7 +1285,7 @@ export default function App() {
              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
              <Mail size={40} className="mb-4" />
              <h4 className="text-2xl font-bold">{LABELS.sectionTitles.contact[lang]}</h4>
-             <p className="opacity-90 mt-2 text-sm">hrytsai.anastasiia@gmail.com</p>
+             <p className="opacity-90 mt-2 text-sm">{PROFILE.email}</p>
            </div>
 
            {/* 6. Interests (New Section) */}
