@@ -1190,6 +1190,161 @@ const VegWamCaseStudy = ({ lang, project }: { lang: Language, project: Project }
  );
 };
 
+// --- NEW NAVITIME CASE STUDY COMPONENT ---
+const NavitimeCaseStudy = ({ lang, project }: { lang: Language, project: Project }) => {
+  const content = project.content[lang];
+
+  return (
+    <div className="bg-white text-[#111111] font-sans">
+      
+      {/* 1. Hero (Blue Theme) */}
+      <section className="bg-blue-600 pt-16 pb-20 px-6 md:px-12 rounded-t-[2rem] text-white">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <div className="inline-block px-3 py-1 bg-white/20 border border-white/30 text-white text-[12px] font-bold uppercase rounded-full tracking-wider">
+              {content.category}
+            </div>
+            <div>
+              <h1 className="text-4xl md:text-5xl font-black mb-4 leading-tight">{content.title}</h1>
+              <p className="text-xl font-bold text-blue-100">{content.description}</p>
+            </div>
+            
+            {/* Meta Grid */}
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 grid grid-cols-2 gap-y-6 mt-8">
+              <div>
+                <p className="text-xs font-bold text-blue-200 uppercase mb-1">Role</p>
+                <p className="font-medium text-sm">{content.caseStudy.role}</p>
+              </div>
+              <div>
+                <p className="text-xs font-bold text-blue-200 uppercase mb-1">Timeline</p>
+                <p className="font-medium text-sm">{content.caseStudy.timeline}</p>
+              </div>
+              <div className="col-span-2">
+                <p className="text-xs font-bold text-blue-200 uppercase mb-1">Tools</p>
+                <div className="flex gap-2 flex-wrap">
+                  {content.caseStudy.tools.map(tool => (
+                    <span key={tool} className="text-xs bg-white/20 px-2 py-1 rounded">{tool}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-center relative">
+             {/* Thumbnail Image */}
+             <div className="w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl p-2 rotate-3 hover:rotate-0 transition-transform duration-500">
+               <img src="/navitime-thumbnail.png" alt="Navitime Thumbnail" className="w-full h-auto rounded-2xl" />
+             </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-4xl mx-auto px-6 md:px-12 py-16 space-y-24">
+        
+        {/* 2. Overview */}
+        <section>
+          <div className="flex items-center gap-2 text-blue-600 mb-4">
+            <Sparkles size={24} />
+            <h3 className="font-bold uppercase tracking-wider text-sm">Overview</h3>
+          </div>
+          <h2 className="text-2xl font-bold mb-6">{content.caseStudy.overview}</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-red-50 p-6 rounded-2xl border border-red-100">
+              <h4 className="font-bold text-red-600 mb-2 flex items-center gap-2"><AlertCircle size={18}/> Problem</h4>
+              <p className="text-gray-700 text-sm leading-relaxed">{content.caseStudy.problem}</p>
+            </div>
+            <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+              <h4 className="font-bold text-blue-600 mb-2 flex items-center gap-2"><CheckCircle size={18}/> Solution</h4>
+              <p className="text-gray-700 text-sm leading-relaxed">{content.caseStudy.solution}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Wireframes */}
+        <section>
+          <div className="mb-8 border-l-4 border-blue-600 pl-4">
+            <h3 className="text-xl font-bold text-gray-900">Wireframes</h3>
+            <p className="text-gray-500 text-sm mt-1">Initial concepts and layout planning</p>
+          </div>
+          <img src="/navi-wireframes.png" alt="Wireframes" className="w-full rounded-2xl shadow-sm border border-gray-100" />
+        </section>
+
+        {/* 4. Design Guide */}
+        <section>
+          <div className="mb-8 border-l-4 border-blue-600 pl-4">
+            <h3 className="text-xl font-bold text-gray-900">Design Guide</h3>
+            <p className="text-gray-500 text-sm mt-1">Typography and Color System</p>
+          </div>
+          <img src="/navi-design-guide.png" alt="Design Guide" className="w-full rounded-2xl shadow-sm border border-gray-100" />
+        </section>
+
+        {/* 5. UI Updates (Before & After Gallery) */}
+        <section>
+          <div className="mb-12 text-center">
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">UI Redesign Highlights</h3>
+            <p className="text-gray-500">Comparing the original interface with the new safety-focused design.</p>
+          </div>
+
+          <div className="space-y-16">
+            
+            {/* Main Screen */}
+            <div className="bg-gray-50 p-4 md:p-8 rounded-[2rem] border border-gray-100">
+              <h4 className="text-center font-bold text-lg mb-6 text-gray-800">Main Screen & Onboarding</h4>
+              <img src="/navi-main-ui.png" alt="Main UI Before After" className="w-full rounded-xl shadow-lg" />
+            </div>
+
+            {/* Menu */}
+            <div className="bg-gray-50 p-4 md:p-8 rounded-[2rem] border border-gray-100">
+              <h4 className="text-center font-bold text-lg mb-6 text-gray-800">Main Menu</h4>
+              <img src="/navi-menu-ui.png" alt="Menu UI Before After" className="w-full rounded-xl shadow-lg" />
+            </div>
+
+            {/* Cycle Computer */}
+            <div className="bg-gray-50 p-4 md:p-8 rounded-[2rem] border border-gray-100">
+              <h4 className="text-center font-bold text-lg mb-6 text-gray-800">Cycle Computer</h4>
+              <img src="/navi-computer-ui.png" alt="Computer UI Before After" className="w-full rounded-xl shadow-lg" />
+            </div>
+
+            {/* Cycling Course */}
+            <div className="bg-gray-50 p-4 md:p-8 rounded-[2rem] border border-gray-100">
+              <h4 className="text-center font-bold text-lg mb-6 text-gray-800">Cycling Course List</h4>
+              <img src="/navi-course-ui.png" alt="Course UI Before After" className="w-full rounded-xl shadow-lg" />
+            </div>
+
+          </div>
+        </section>
+
+        {/* 6. All Screens Gallery */}
+        <section>
+          <div className="mb-8 border-l-4 border-blue-600 pl-4">
+            <h3 className="text-xl font-bold text-gray-900">Final Design Overview</h3>
+          </div>
+          <img src="/navi-gallery.png" alt="All Screens" className="w-full rounded-2xl shadow-lg" />
+        </section>
+
+        {/* 7. Figma Prototype Embed */}
+        {project.figmaUrl && (
+          <section>
+            <div className="flex items-center gap-2 mb-6">
+              <Play className="text-blue-600" />
+              <h3 className="font-bold uppercase tracking-wider text-sm">Interactive Prototype</h3>
+            </div>
+            <div className="w-full h-[800px] bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-inner">
+              <iframe
+                style={{ border: 'none' }}
+                width="100%"
+                height="100%"
+                src={`https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(project.figmaUrl)}`}
+                allowFullScreen
+              ></iframe>
+            </div>
+          </section>
+        )}
+
+      </div>
+    </div>
+  );
+};
+
 const LanguageSwitcher = ({
  current,
  onChange,
@@ -1261,6 +1416,8 @@ const Modal = ({ isOpen, onClose, project, lang }: { isOpen: boolean; onClose: (
         
          {project.id === 'vegwam' ? (
            <VegWamCaseStudy lang={lang} project={project} />
+         ) : project.id === 'navitime' ? (
+           <NavitimeCaseStudy lang={lang} project={project} />
          ) : (
            <>
              {/* Header */}
