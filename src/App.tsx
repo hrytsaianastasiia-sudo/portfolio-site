@@ -15,8 +15,7 @@ import {
   Sparkles,
   Play,
   Leaf,
-  ArrowUp,
-  HelpCircle // Added for the "Why now?" icon
+  ArrowUp
 } from 'lucide-react';
 
 // --- Types & Interfaces ---
