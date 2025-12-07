@@ -5,7 +5,6 @@ import {
   Globe,
   PenTool,
   Layout,
-  User,
   CheckCircle,
   ArrowRight,
   Palette,
@@ -173,7 +172,7 @@ const VEGWAM_DATA = {
      text: {
        en: "Information sources are scattered across SNS, blogs, and personal sites, making it hard to judge if info is up-to-date. There was a demand for a \"trustworthy hub\" that covers all aspects of life, including dining and daily goods.",
        jp: "SNSやブログ、個人のまとめサイトなど情報源がバラバラで、最新情報かどうかも判断しづらいのが現状です。外食・日用品・コスメなど生活全体をカバーできる「信頼できるハブ」が求められていました。",
-       ua: "Джерела інформації розкидані, що ускладнює перевірку актуальності. Був потрібен «надійний хаб», що охоплює харчування та побут."
+       ua: "Джерела інформації розкидані, що ускладнює перевірку актуальності. Був потрібен「надійний хаб», що охоплює харчування та побут."
      }
    }
  },
@@ -630,14 +629,6 @@ const VegMetaBlock = ({ lang }: { lang: Language }) => {
  );
 };
 
-const VegInsightCard = ({ title, body, label }: { title: string, body: string, label?: string }) => (
- <div className="bg-white border-l-4 border-[#145850] p-6 shadow-sm rounded-r-xl h-full flex flex-col">
-   {label && <p className="text-[#f1683c] text-xs font-bold uppercase mb-2">{label}</p>}
-   <h3 className="text-lg font-bold text-[#111111] mb-3">{title}</h3>
-   <p className="text-[#555555] text-sm leading-relaxed flex-1">{body}</p>
- </div>
-);
-
 const VegResearchSection = ({ lang }: { lang: Language }) => {
   const d = VEGWAM_DATA.research_new;
 
@@ -834,33 +825,6 @@ const VegPersonaSection = ({ lang }: { lang: Language }) => {
     </section>
   );
 };
-
-
-const VegQuoteBlock = ({ text, author }: { text: string, author: string }) => (
- <div className="bg-[#f7f8f5] p-6 border-l-4 border-[#145850] rounded-r-lg my-6">
-   <p className="text-lg italic font-medium text-[#111111] mb-3 leading-relaxed">
-     "{text}"
-   </p>
-   <p className="text-[#555555] text-xs font-bold uppercase tracking-wider">— {author}</p>
- </div>
-);
-
-const VegProcessStrip = ({ steps }: { steps: string[] }) => (
- <div className="flex flex-wrap gap-2 md:gap-0 items-center justify-between bg-white p-4 rounded-xl border border-[#dddddd] mb-8 text-xs md:text-sm">
-   {steps.map((step, i) => (
-     <React.Fragment key={i}>
-       {/* CHANGED: Removed the condition (i < 3) so ALL steps are green */}
-       <div className="flex items-center gap-2 font-bold text-[#145850]">
-         <div className="w-6 h-6 rounded-full flex items-center justify-center bg-[#145850] text-white">
-           {i + 1}
-         </div>
-         <span>{step}</span>
-       </div>
-       {i < steps.length - 1 && <div className="w-4 md:w-8 h-px bg-[#dddddd] mx-2"></div>}
-     </React.Fragment>
-   ))}
- </div>
-);
 
 const VegImageFigure = ({ src, caption, annotations }: { src: string, caption: string, annotations?: string[] }) => (
  <figure className="my-8">
