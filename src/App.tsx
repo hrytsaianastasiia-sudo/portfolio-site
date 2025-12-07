@@ -1124,10 +1124,10 @@ const VegWamCaseStudy = ({ lang, project }: { lang: Language, project: Project }
          <VegSectionHeader overline="BRANDING" title={lang === 'jp' ? "ロゴデザイン" : "Logo Design"} />
          <div className="space-y-8">
             <div className="bg-white p-2 md:p-4 rounded-[2rem] border border-gray-100 shadow-sm">
-              <img src="/Vegwam_logo01.jpg" alt="Logo Sketches and Rough Drafts" className="w-full h-auto rounded-2xl" />
+              <img src="/Vegwam_logo01.png" alt="Logo Sketches and Rough Drafts" className="w-full h-auto rounded-2xl" />
             </div>
             <div className="bg-white p-2 md:p-4 rounded-[2rem] border border-gray-100 shadow-sm">
-              <img src="/Vegwam_logo02.jpg" alt="Logo Construction and Concept" className="w-full h-auto rounded-2xl" />
+              <img src="/Vegwam_logo02.png" alt="Logo Construction and Concept" className="w-full h-auto rounded-2xl" />
             </div>
             <div className="bg-white p-2 md:p-4 rounded-[2rem] border border-gray-100 shadow-sm">
               <img src="/Vegwam_logo03.png" alt="Final Logo Design" className="w-full h-auto rounded-2xl" />
