@@ -1,7 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react';
 import {
   X,
-  Mail, // Linkedin removed
+  Mail,
   Globe,
   PenTool,
   Layout,
@@ -15,7 +15,11 @@ import {
   Sparkles,
   Play,
   Leaf,
-  ArrowUp
+  ArrowUp,
+  Search,
+  Users,
+  AlertCircle,
+  MapPin
 } from 'lucide-react';
 
 // --- Types & Interfaces ---
@@ -173,37 +177,128 @@ const VEGWAM_DATA = {
      }
    }
  },
- insights: [
-   {
-     label: "INSIGHT 01",
-     title: { en: "Scattered Information", jp: "情報の分散", ua: "Розкидана Інформація" },
-     body: { en: "Restaurant, recipe, and product info is scattered, making it time-consuming to gather daily necessities.", jp: "飲食店、レシピ、商品情報がバラバラで、生活に必要な情報を集めるのに時間がかかる。", ua: "Інформація про ресторани та продукти розкидана, що ускладнює пошук." }
+ research_new: {
+  title: { en: "User Research", jp: "ユーザーリサーチ", ua: "Дослідження Користувачів" },
+  subTitle: { en: "Hearing from both Vegans and their 'Supporters'", jp: "ヴィーガン当事者と、その周りの「サポーター」両方の声を聞く", ua: "Почути як веганів, так і їхніх «саппортерів»" },
+  outline: {
+    title: { en: "Research Outline", jp: "調査概要", ua: "Огляд Дослідження" },
+    items: [
+      { 
+        label: { en: "Desk Research", jp: "デスクリサーチ", ua: "Кабінетне Дослідження" }, 
+        text: { en: "Investigated Japan's vegan market, existing apps/web services, and online communities.", jp: "日本のヴィーガン市場、既存アプリ・ウェブサービス、オンラインコミュニティを調査。", ua: "Досліджено ринок веганства в Японії, існуючі додатки та онлайн-спільноти." } 
+      },
+      { 
+        label: { en: "Interviews", jp: "半構造化インタビュー", ua: "Напівструктуровані Інтерв'ю" }, 
+        text: { en: "Conducted 30-45 min interviews with 5 people: 2 Vegans and 3 Supporters (Non-vegans supporting family/friends).", jp: "ヴィーガン当事者：2名、サポーター：3名（計5名）に各30〜45分のインタビューを実施。", ua: "Проведено 30-45 хв інтерв'ю з 5 людьми: 2 вегани та 3 саппортери." } 
+      }
+    ]
+  },
+  interviewees: {
+    group1: {
+      label: { en: "Vegans (2)", jp: "ヴィーガン当事者（2名）", ua: "Вегани (2)" },
+      people: [
+        {
+          id: "A",
+          info: { en: "Male, 30s. Office worker.", jp: "インタビュイーA（30代・男性）", ua: "Чол, 30+. Офісний працівник." },
+          quote: { en: "Calling restaurants to check 'Is this really vegan?' every time is the biggest stress.", jp: "「お店に電話して『本当にヴィーガン対応か』を毎回確認するのが、一番ストレスです。」", ua: "Дзвонити в ресторани для перевірки — найбільший стрес." }
+        },
+        {
+          id: "B",
+          info: { en: "Female, 70s. Health-conscious.", jp: "インタビュイーB（70代・女性）", ua: "Жін, 70+. Піклується про здоров'я." },
+          quote: { en: "I really didn't know what to eat in the beginning.", jp: "「何を食べればいいのか、最初の頃は本当に分かりませんでした。」", ua: "Спочатку я дійсно не знала, що їсти." }
+        }
+      ]
+    },
+    group2: {
+      label: { en: "Supporters (3)", jp: "サポーター（3名）", ua: "Саппортери (3)" },
+      people: [
+        {
+          id: "C",
+          info: { en: "Mother, 50s. Cooking for vegan family.", jp: "インタビュイーC（50代・女性・母）", ua: "Мати, 50+. Готує для веганів." },
+          quote: { en: "I want to enjoy meals together, but checking ingredients so I don't make a mistake is exhausting.", jp: "「一緒に楽しみたいけど、間違えないように調べるのがすごく大変です。」", ua: "Хочу їсти разом, але перевірка інгредієнтів виснажує." }
+        },
+        {
+          id: "D/E",
+          info: { en: "Friends, 30s. Eating out with vegans.", jp: "インタビュイーD・E（30代・友人）", ua: "Друзі, 30+. Їдять з веганами." },
+          quote: { en: "I want to say 'Let's go here!', but worrying if they can eat there takes so much time.", jp: "「本当はもっと気軽に『ここ行こう！』って言いたいけど、お店選びにすごく時間がかかります。」", ua: "Хочу сказати «Ходімо сюди!», але хвилювання забирає час." }
+        }
+      ]
+    }
+  }
+ },
+ problems_new: {
+  header: { en: "PROBLEM & INSIGHT", jp: "PROBLEM", ua: "ПРОБЛЕМА ТА ІНСАЙТ" },
+  title: { en: "Not just the vegan, but the 'people around them' are also lost in information.", jp: "ヴィーガン本人だけでなく、「一緒に過ごす人」も情報の迷子になっている", ua: "Не тільки вегани, а й люди навколо них губляться в інформації." },
+  cards: [
+    {
+      icon: <Search size={24} />,
+      label: { en: "Scattered Information", jp: "情報の分散", ua: "Розкидана Інформація" },
+      body: { 
+        en: "Info is scattered across sites and SNS. Both vegans and supporters feel the burden of searching from scratch every time.", 
+        jp: "ヴィーガン対応の店・商品・レシピが分散しており、毎回ゼロから検索が必要。本人だけでなくサポーターも負担を感じている。", 
+        ua: "Інформація розкидана. І вегани, і саппортери відчувають тягар пошуку з нуля." 
+      }
+    },
+    {
+      icon: <Users size={24} />,
+      label: { en: "Gap with Companions", jp: "同伴者とのギャップ", ua: "Розрив з Компаньйонами" },
+      body: { 
+        en: "Finding a place where 'everyone is happy' is hard. The inviter feels pressure, and the invited feels sorry.", 
+        jp: "「みんなが満足できて、ヴィーガンも安心な店」が見つからない。誘う側のプレッシャーと、誘われる側の「申し訳なさ」が両立している。", 
+        ua: "Важко знайти місце, де «всі щасливі». Запрошуючий відчуває тиск, а запрошений — провину." 
+      }
+    },
+    {
+      icon: <AlertCircle size={24} />,
+      label: { en: "Beginner Anxiety", jp: "ビギナー期の不安", ua: "Тривога Новачків" },
+      body: { 
+        en: "Not knowing what to choose or if nutrition is enough leads to dropout. Small text and jargon are hurdles for seniors.", 
+        jp: "何を食べるべきか分からず挫折しやすい。特にシニア層には専門用語や文字の小ささがハードル。", 
+        ua: "Незнання, що обрати, призводить до відмови. Дрібний текст — бар'єр для літніх." 
+      }
+    },
+    {
+      icon: <MapPin size={24} />,
+      label: { en: "Supporter Fatigue", jp: "周囲の人の検索疲れ", ua: "Втома Саппортерів" },
+      body: { 
+        en: "Supporters are tired of constantly checking ingredients for gifts and travel meals, fearing mistakes.", 
+        jp: "レシピやお土産、旅行の食事などを調べるたびに成分確認が必要。「間違えるのが怖い」「時間がかかる」という声。", 
+        ua: "Саппортери втомилися перевіряти інгредієнти, боячись помилок." 
+      }
+    }
+  ],
+  core_insight: {
+    en: "Vegan services must design the entire experience to include not just the 'individual', but also the people supporting them.",
+    jp: "ヴィーガン向けサービスは、「本人」だけでなく、周りで支える人も含めた体験全体をデザインする必要がある。",
+    ua: "Веганські сервіси мають проектувати досвід не лише для «особи», а й для людей, що її підтримують."
+  }
+ },
+ persona_new: {
+   header: "PERSONA",
+   subHeader: { en: "Defining 2 Types: 'The Vegan' and 'The Supporter'", jp: "「ヴィーガン本人」と「サポーター」の2タイプを定義", ua: "Визначення 2 типів: «Веган» та «Саппортер»" },
+   matrix: {
+     yAxis: { top: "Long History", bottom: "Short History" },
+     xAxis: { left: "Supporter", right: "Vegan" },
+     note: { en: "Note: VegWam targets not just the individual, but also the 'supporter layer' (bottom right).", jp: "Note: VegWamは本人だけでなく、右下の「サポーター層」も主要ターゲットとして捉える点が特徴。", ua: "Note: VegWam націлений також на «саппортерів»." }
    },
-   {
-     label: "INSIGHT 02",
-     title: { en: "Beginner Anxiety", jp: "ビギナーの不安", ua: "Тривога Новачків" },
-     body: { en: "Anxiety about ingredients ('Is this safe to eat?') and asking staff creates stress.", jp: "「これは食べて大丈夫？」という成分への不安や、店員への確認がストレスになる。", ua: "Тривога щодо інгредієнтів та необхідність розпитувати персонал створюють стрес." }
+   typeA: {
+     label: { en: "TYPE A: The Vegan", jp: "TYPE A: ヴィーガン本人", ua: "TYPE A: Веган" },
+     tag: { en: "Wants to continue naturally", jp: "日常の中で続けたい", ua: "Хоче продовжувати природно" },
+     name: { en: "Ken Sato (32)", jp: "佐藤 健 (32)", ua: "Кен Сато (32)" },
+     role: { en: "Office Worker / Tokyo", jp: "会社員 / 都内", ua: "Офісний працівник / Токіо" },
+     desc: { en: "Vegan for 3 years due to partner. Busy with work on weekdays, enjoys cafe hopping on weekends. Wants to be 'natural', not 'high maintenance'.", jp: "ヴィーガン歴3年。パートナーの影響で開始。平日は仕事が忙しく外食中心だが、週末はカフェ巡りを楽しむ。「意識高い系」ではなく「自然体」でいたい。", ua: "Веган 3 роки. Зайнятий роботою, любить кафе на вихідних. Хоче бути «природним»." },
+     pains: { en: ["Checking restaurants by phone is tedious", "Lack of trusted info"], jp: ["入店前の電話確認が面倒", "信頼できる日本語情報の不足"], ua: ["Дзвонити в ресторани нудно", "Брак надійної інфо"] },
+     goals: { en: ["Eat out easily with friends", "Choose shops intuitively"], jp: ["友人と気軽に外食したい", "直感的に店を選びたい"], ua: ["Легко їсти з друзями", "Інтуїтивний вибір"] }
    },
-   {
-     label: "INSIGHT 03",
-     title: { en: "Isolation", jp: "孤独感", ua: "Ізоляція" },
-     body: { en: "Few people understand the lifestyle, lacking a community to share concerns.", jp: "周りに理解者が少なく、情報交換や悩みを共有できるコミュニティがない。", ua: "Мало людей розуміють цей спосіб життя, відсутність спільнотиでサポート。" }
-   }
- ],
- research: {
-   title: { en: "User Research", jp: "ユーザーリサーチ", ua: "Дослідження Користувачів" },
-   steps: [
-     { en: "Desk Research", jp: "Desk Research", ua: "Кабінетне Дослідження" },
-     { en: "Interview (5 Users)", jp: "Interview (5人)", ua: "Інтерв'ю (5 чол.)" },
-     { en: "Persona & Journey", jp: "Persona & Journey", ua: "Персона та Шлях" },
-     { en: "UI Design", jp: "UI Design", ua: "UI Дизайн" } // This is already here, which is good.
-   ],
-   personaName: { en: "Namiko (20s)", jp: "Namiko (20代・女性)", ua: "Наміко (20+)" },
-   personaRole: { en: "Beginner Vegan / Office Worker", jp: "ヴィーガンビギナー / 会社員", ua: "Новачок у веганстві / Офісний працівник" },
-   quote: {
-     en: "Calling restaurants to check 'Is this really vegan?' every time is the biggest stress. I stopped eating out with friends to avoid being a burden.",
-     jp: "お店に電話して『本当にヴィーガン対応か』を毎回確認するのが、一番ストレスです。友達との外食も、気を使わせてしまうので避けるようになりました。",
-     ua: "Телефонувати в ресторани, щоб перевірити «чи це дійсно веганське» — найбільший стрес. Я перестала їсти з друзями, щоб не бути тягарем."
+   typeB: {
+     label: { en: "TYPE B: The Supporter", jp: "TYPE B: サポーター", ua: "TYPE B: Саппортер" },
+     name: { en: "Yumi Yamamoto (55)", jp: "山本 由美 (55)", ua: "Юмі Ямамото (55)" },
+     role: { en: "Homemaker", jp: "主婦", ua: "Домогосподарка" },
+     desc: { en: "Non-vegan, but daughter is vegan. Feels pressure not to make mistakes with family meals or gifts.", jp: "自身はノンヴィーガンだが、娘がヴィーガン。家族の食事や贈り物で「間違えたくない」というプレッシャーを感じている。", ua: "Не веган, але дочка веган. Відчуває тиск, щоб не помилитися з їжею." },
+     tags: [
+       { en: "Ingredient check is hard", jp: "原材料確認が大変", ua: "Перевірка інгредієнтів — це складно" }, 
+       { en: "Want to enjoy together", jp: "家族みんなで楽しみたい", ua: "Хочу насолоджуватися разом" }
+     ]
    }
  },
  ui: {
@@ -221,7 +316,7 @@ const VEGWAM_DATA = {
      body: {
        en: "Implemented intuitive filters for 'Area' x 'Category' x 'Details' (e.g., Gluten-free). Smooth switching to map view allows finding safe spots nearby instantly.",
        jp: "「エリア」×「カテゴリ」×「詳細条件（グルテンフリー等）」を直感的に絞り込めるフィルター機能を実装。地図表示との切り替えもスムーズにし、現在地周辺の安心できるお店を即座に見つけられます。",
-       ua: "Інтуїтивні фільтри «Район» x「Категорія」 x «Деталі». Плавне перемикання на карту дозволяє миттєво знайти безпечні місця поруч."
+       ua: "Інтуїтивні фільтри «Район» x「Категорія」 x「Деталі». Плавне перемикання на карту дозволяє миттєво знайти безпечні місця поруч."
      }
    }
  },
@@ -342,7 +437,7 @@ const PROJECTS: Project[] = [
  },
  {
    id: "navitime",
-   thumbnail: "https://placehold.co/1200x800/1e3a8a/ffffff?text=NAVITIME+Redesign",
+   thumbnail: "/navitime-thumbnail.png",
    accentColor: "bg-[#007AFF]",
    figmaUrl: "https://www.figma.com/proto/hzx81CrdGeHadYO9whxsqw/%E8%87%AA%E8%BB%A2%E8%BB%8ANAVIGATION-FINAL?page-id=0%3A1&node-id=3-31&p=f&viewport=401%2C481%2C0.22&t=NsaxSieERH8gXG8d-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=3%3A31",
    designSystem: {
@@ -464,6 +559,7 @@ const PROJECTS: Project[] = [
 
 // --- COMPONENTS ---
 
+// Helper Components
 const VegTag = ({ children }: { children: React.ReactNode }) => (
  <span className="inline-block px-3 py-1 bg-white border border-[#f1683c] text-[#f1683c] text-[12px] font-bold uppercase rounded-full tracking-wider">
    {children}
@@ -479,7 +575,6 @@ const VegSectionHeader = ({ overline, title, subtext }: { overline: string, titl
  </div>
 );
 
-// New Component for Background Section Cards
 const VegBackgroundCard = ({ title, text, theme }: { title: string, text: string, theme: 'orange' | 'green' }) => {
   const gradients = {
     orange: 'from-[#F1683C] to-[#ff9f7c]',
@@ -505,7 +600,7 @@ const VegMetaBlock = ({ lang }: { lang: Language }) => {
    type: { en: "Type", jp: "種別", ua: "Тип" },
    valType: { en: "Academic Project", jp: "学内課題", ua: "Академічний Проєкт" },
    duration: { en: "Duration", jp: "期間", ua: "Тривалість" },
-   valDuration: { en: "1 Month", jp: "1ヶ月", ua: "1 Місяць" }, // Simplified to match screenshot
+   valDuration: { en: "1 Month", jp: "1ヶ月", ua: "1 Місяць" },
    role: { en: "Role", jp: "担当", ua: "Роль" },
    valRole: { en: "UX Research / UI Design", jp: "UXリサーチ / UIデザイン", ua: "UX Дослідження / UI Дизайн" },
    tools: { en: "Tools", jp: "ツール", ua: "Інструменти" }
@@ -543,35 +638,203 @@ const VegInsightCard = ({ title, body, label }: { title: string, body: string, l
  </div>
 );
 
-const VegPersonaCard = ({ lang }: { lang: Language }) => (
- <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#dddddd]">
-   <div className="flex items-center gap-4 mb-6 border-b border-[#dddddd] pb-6">
-     <div className="w-16 h-16 bg-[#e6eddd] rounded-full flex items-center justify-center text-[#145850]">
-       <User size={32} />
-     </div>
-     <div>
-       <h3 className="text-xl font-bold text-[#145850]">{VEGWAM_DATA.research.personaName[lang]}</h3>
-       <p className="text-[#555555] text-sm">{VEGWAM_DATA.research.personaRole[lang]}</p>
-     </div>
-   </div>
-   <div className="grid md:grid-cols-2 gap-8">
-     <div>
-       <p className="text-[#f1683c] font-bold uppercase text-xs mb-3">Goals / Needs</p>
-       <ul className="space-y-2 text-[#111111] text-sm">
-         <li className="flex items-start gap-2"><CheckCircle size={16} className="text-[#145850] shrink-0" /> Find safe cafes easily</li>
-         <li className="flex items-start gap-2"><CheckCircle size={16} className="text-[#145850] shrink-0" /> Learn about nutrition</li>
-       </ul>
-     </div>
-     <div>
-       <p className="text-[#f1683c] font-bold uppercase text-xs mb-3">Pain Points</p>
-       <ul className="space-y-2 text-[#111111] text-sm">
-         <li className="flex items-start gap-2"><X size={16} className="text-red-500 shrink-0" /> Fear of hidden fish broth</li>
-         <li className="flex items-start gap-2"><X size={16} className="text-red-500 shrink-0" /> Asking staff feels awkward</li>
-       </ul>
-     </div>
-   </div>
- </div>
-);
+const VegResearchSection = ({ lang }: { lang: Language }) => {
+  const d = VEGWAM_DATA.research_new;
+
+  return (
+    <section>
+      <VegSectionHeader overline={d.title[lang]} title={d.subTitle[lang]} />
+      
+      {/* 1. Outline */}
+      <div className="bg-white rounded-2xl p-8 border border-gray-100 mb-12 shadow-sm">
+        <h3 className="font-bold text-[#145850] border-b border-gray-100 pb-2 mb-4 uppercase tracking-wider text-sm">
+          {d.outline.title[lang]}
+        </h3>
+        <div className="space-y-4">
+          {d.outline.items.map((item, i) => (
+            <div key={i} className="flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
+              <span className="font-bold text-[#111111] min-w-[140px] shrink-0">{item.label[lang]}</span>
+              <p className="text-[#555555] text-sm leading-relaxed">{item.text[lang]}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 2. Interviewees */}
+      <div className="grid md:grid-cols-2 gap-8">
+        
+        {/* Vegans */}
+        <div className="space-y-6">
+          <h4 className="text-center font-bold text-[#145850] bg-[#e6eddd] py-2 rounded-full">
+            {d.interviewees.group1.label[lang]}
+          </h4>
+          {d.interviewees.group1.people.map((p, i) => (
+            <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative">
+              <div className="absolute -left-3 top-6 w-3 h-3 bg-white border-l border-b border-gray-100 transform rotate-45"></div>
+              <p className="font-bold text-xs text-[#f1683c] uppercase mb-2">{p.info[lang]}</p>
+              <p className="text-[#111111] font-medium leading-relaxed">"{p.quote[lang]}"</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Supporters */}
+        <div className="space-y-6">
+          <h4 className="text-center font-bold text-[#F1683C] bg-[#ffece6] py-2 rounded-full">
+            {d.interviewees.group2.label[lang]}
+          </h4>
+          {d.interviewees.group2.people.map((p, i) => (
+            <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative">
+              <div className="absolute -left-3 top-6 w-3 h-3 bg-white border-l border-b border-gray-100 transform rotate-45"></div>
+              <p className="font-bold text-xs text-[#145850] uppercase mb-2">{p.info[lang]}</p>
+              <p className="text-[#111111] font-medium leading-relaxed">"{p.quote[lang]}"</p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+const VegProblemSection = ({ lang }: { lang: Language }) => {
+  const d = VEGWAM_DATA.problems_new;
+
+  return (
+    <section className="bg-[#145850] text-white rounded-[2rem] p-8 md:p-12 my-12">
+      <div className="text-center mb-12">
+        <p className="text-[#F1683C] text-xs font-bold uppercase tracking-widest mb-3">{d.header[lang]}</p>
+        <h2 className="text-2xl md:text-3xl font-bold max-w-3xl mx-auto leading-snug">{d.title[lang]}</h2>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-6 mb-12">
+        {d.cards.map((card, i) => (
+          <div key={i} className="bg-white/10 backdrop-blur-sm border border-white/20 p-6 rounded-2xl">
+            <div className="flex items-center gap-3 mb-4 text-[#F1683C]">
+              {card.icon}
+              <h3 className="font-bold text-lg">{card.label[lang]}</h3>
+            </div>
+            <p className="text-white/80 text-sm leading-relaxed">
+              {card.body[lang]}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-white text-[#145850] p-6 md:p-8 rounded-2xl text-center">
+        <p className="font-bold text-lg md:text-xl leading-relaxed">
+          {d.core_insight[lang]}
+        </p>
+      </div>
+    </section>
+  );
+};
+
+const VegPersonaSection = ({ lang }: { lang: Language }) => {
+  const d = VEGWAM_DATA.persona_new;
+
+  return (
+    <section>
+      <VegSectionHeader overline={d.header} title={d.subHeader[lang]} />
+      
+      <div className="grid lg:grid-cols-12 gap-8 items-start">
+        
+        {/* Matrix (Custom Component) */}
+        <div className="lg:col-span-4 bg-white p-6 rounded-2xl border border-gray-100 shadow-sm aspect-square flex flex-col">
+          <h4 className="font-bold text-[#111111] mb-6 text-center">User Segmentation</h4>
+          <div className="flex-1 relative border-l-2 border-b-2 border-gray-200 m-4">
+            {/* Labels */}
+            <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-bold">{d.matrix.yAxis.top}</span>
+            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs text-gray-400 font-bold">{d.matrix.yAxis.bottom}</span>
+            <span className="absolute top-1/2 -left-6 -translate-y-1/2 -rotate-90 text-xs text-gray-400 font-bold whitespace-nowrap">{d.matrix.xAxis.left}</span>
+            <span className="absolute top-1/2 -right-6 -translate-y-1/2 rotate-90 text-xs text-gray-400 font-bold whitespace-nowrap">{d.matrix.xAxis.right}</span>
+
+            {/* Plot Points */}
+            <div className="absolute top-[30%] right-[30%] w-6 h-6 bg-[#145850] rounded-full shadow-lg border-2 border-white z-10 flex items-center justify-center group cursor-pointer">
+              <span className="absolute top-full mt-2 font-bold text-[#145850] text-xs whitespace-nowrap">TYPE A</span>
+            </div>
+            <div className="absolute bottom-[30%] left-[30%] w-6 h-6 bg-[#F1683C] rounded-full shadow-lg border-2 border-white z-10 flex items-center justify-center group cursor-pointer">
+              <span className="absolute top-full mt-2 font-bold text-[#F1683C] text-xs whitespace-nowrap">TYPE B</span>
+            </div>
+
+            {/* Quadrant Lines */}
+            <div className="absolute inset-0 border-t border-r border-gray-100 opacity-50"></div>
+          </div>
+          <p className="text-[10px] text-gray-500 bg-blue-50 p-3 rounded-lg mt-4 leading-snug">
+            {d.matrix.note[lang]}
+          </p>
+        </div>
+
+        {/* Persona Cards */}
+        <div className="lg:col-span-8 space-y-8">
+          
+          {/* Type A */}
+          <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg flex flex-col md:flex-row">
+            <div className="md:w-1/3 h-64 md:h-auto bg-gray-200 relative">
+               <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80" className="absolute inset-0 w-full h-full object-cover" alt="Persona A" />
+            </div>
+            <div className="md:w-2/3 p-6 md:p-8">
+              <div className="flex items-center justify-between mb-4">
+                <span className="bg-[#145850] text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wide">
+                  {d.typeA.label[lang]}
+                </span>
+                <span className="text-gray-400 text-xs font-bold">{d.typeA.tag[lang]}</span>
+              </div>
+              
+              <h3 className="text-2xl font-bold text-[#111111] mb-1">{d.typeA.name[lang]}</h3>
+              <p className="text-sm text-gray-500 mb-6 font-medium">{d.typeA.role[lang]}</p>
+              
+              <p className="text-[#555555] text-sm leading-relaxed mb-6 border-l-4 border-[#145850] pl-4">
+                {d.typeA.desc[lang]}
+              </p>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-[#F1683C] text-xs font-bold uppercase mb-2 flex items-center gap-1"><AlertCircle size={12}/> Pain Points</p>
+                  <ul className="text-xs text-gray-600 space-y-1">
+                    {d.typeA.pains[lang].map((p,i) => <li key={i}>• {p}</li>)}
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-[#145850] text-xs font-bold uppercase mb-2 flex items-center gap-1"><Users size={12}/> Goals</p>
+                  <ul className="text-xs text-gray-600 space-y-1">
+                    {d.typeA.goals[lang].map((g,i) => <li key={i}>• {g}</li>)}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Type B (Smaller) */}
+          <div className="bg-[#fff5f2] rounded-2xl p-6 md:p-8 border border-[#ffdccf] flex flex-col md:flex-row items-center md:items-start gap-6">
+             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md shrink-0">
+               <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80" className="w-full h-full object-cover" alt="Persona B" />
+             </div>
+             <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                   <span className="text-[#F1683C] font-bold text-sm uppercase">{d.typeB.label[lang]}</span>
+                   <span className="w-px h-3 bg-gray-300"></span>
+                   <span className="font-bold text-[#111111]">{d.typeB.name[lang]}</span>
+                   <span className="text-xs text-gray-500">({d.typeB.role[lang]})</span>
+                </div>
+                <p className="text-sm text-[#555555] leading-relaxed mb-4">
+                  {d.typeB.desc[lang]}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {d.typeB.tags.map((t, i) => (
+                    <span key={i} className="bg-white text-gray-600 px-3 py-1 rounded-full text-xs font-bold shadow-sm border border-[#ffdccf]">
+                      {t[lang]}
+                    </span>
+                  ))}
+                </div>
+             </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
 
 const VegQuoteBlock = ({ text, author }: { text: string, author: string }) => (
  <div className="bg-[#f7f8f5] p-6 border-l-4 border-[#145850] rounded-r-lg my-6">
@@ -713,29 +976,16 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
        </section>
 
-       {/* 4. Insights */}
-       <section>
-         <div className="grid md:grid-cols-3 gap-6">
-           {t.insights.map((insight, i) => (
-             <VegInsightCard key={i} title={insight.title[lang]} body={insight.body[lang]} label={insight.label} />
-           ))}
-         </div>
-       </section>
+       {/* 4. NEW Research Section */}
+       <VegResearchSection lang={lang} />
 
-       {/* 5. User Research */}
-       <section>
-         <VegSectionHeader overline="USER RESEARCH" title={t.research.title[lang]} />
-         <VegProcessStrip steps={t.research.steps.map(s => s[lang])} />
-         
-         <div className="grid gap-8">
-           <VegPersonaCard lang={lang} />
-           <VegQuoteBlock text={t.research.quote[lang]} author={t.research.personaName[lang]} />
-         </div>
-         
-         {/* REMOVED: The separate "Step 4" block is no longer needed as it's integrated into the strip above */}
-       </section>
+       {/* 5. NEW Problem & Insight Section */}
+       <VegProblemSection lang={lang} />
 
-       {/* 6. IA & Flow */}
+       {/* 6. NEW Persona Section */}
+       <VegPersonaSection lang={lang} />
+
+       {/* 7. IA & Flow */}
        <section>
          <VegSectionHeader overline="IA & FLOW" title={lang === 'jp' ? "情報設計と体験フロー" : "IA & User Flow"} />
          <VegImageFigure
@@ -745,7 +995,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          />
        </section>
 
-       {/* 7. Prototype Section */}
+       {/* 8. Prototype Section */}
        <section>
          <VegSectionHeader overline="PROTOTYPE" title={lang === 'jp' ? "プロトタイプ" : "Interactive Prototype"} />
          <div className="w-full h-[800px] bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-inner">
@@ -762,7 +1012,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </p>
        </section>
 
-       {/* 8. UI Highlights */}
+       {/* 9. UI Highlights */}
        <section>
          <VegSectionHeader overline="UI HIGHLIGHTS" title={t.ui.title[lang]} />
          
@@ -789,7 +1039,7 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
          </div>
        </section>
 
-       {/* 9. Outcomes */}
+       {/* 10. Outcomes */}
        <section className="bg-white p-8 rounded-2xl border border-[#dddddd]">
          <VegSectionHeader overline="OUTCOMES" title={t.outcomes.title[lang]} />
          <div className="grid md:grid-cols-2 gap-8">
@@ -816,8 +1066,6 @@ const VegWamCaseStudy = ({ lang }: { lang: Language }) => {
    </div>
  );
 };
-
-// --- Components ---
 
 const LanguageSwitcher = ({
  current,
